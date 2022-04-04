@@ -1,4 +1,16 @@
 import * as React from "react";
+import { ButtonHTMLAttributes, TextareaHTMLAttributes } from "react";
+import { Preview, TextArea, Toolbar, ToolbarButtonData } from ".";
+import { Classes, L18n } from "..";
+import { ChildProps } from "../child-props";
+import { CommandOrchestrator } from "../commands/command-orchestrator";
+import {
+  getDefaultCommandMap,
+  getDefaultToolbarCommands
+} from "../commands/default-commands/defaults";
+import { SvgIcon } from "../icons";
+import { enL18n } from "../l18n/react-mde.en";
+import { Refs } from "../refs";
 import {
   CommandMap,
   GenerateMarkdownPreview,
@@ -7,20 +19,8 @@ import {
   Suggestion,
   ToolbarCommands
 } from "../types";
-import { Preview, Toolbar, TextArea, ToolbarButtonData } from ".";
 import { Tab } from "../types/Tab";
-import {
-  getDefaultCommandMap,
-  getDefaultToolbarCommands
-} from "../commands/default-commands/defaults";
-import { Classes, L18n } from "..";
-import { enL18n } from "../l18n/react-mde.en";
-import { SvgIcon } from "../icons";
 import { classNames } from "../util/ClassNames";
-import { ChildProps } from "../child-props";
-import { CommandOrchestrator } from "../commands/command-orchestrator";
-import { Refs } from "../refs";
-import { ButtonHTMLAttributes, TextareaHTMLAttributes } from "react";
 import { ComponentSimilarTo } from "../util/type-utils";
 
 export interface ReactMdeProps {
@@ -47,7 +47,8 @@ export interface ReactMdeProps {
   loadSuggestions?: (
     text: string,
     triggeredBy: string
-  ) => Promise<Suggestion[]>;
+  ) => Promise<Suggestion[] | { loading: React.ReactNode }>;
+  setSuggestions?: React.Ref<(suggestions: Suggestion[]) => void | null>;
   childProps?: ChildProps;
   paste?: PasteOptions;
   l18n?: L18n;
@@ -73,10 +74,9 @@ export interface ReactMdeState {
   editorHeight: number;
 }
 
-const pasteOptionDefaults: Required<Omit<
-  PasteOptions,
-  "saveImage" | "command"
->> = {
+const pasteOptionDefaults: Required<
+  Omit<PasteOptions, "saveImage" | "command">
+> = {
   accept: "image/*",
   multiple: false
 };
@@ -186,6 +186,7 @@ export class ReactMde extends React.Component<ReactMdeProps, ReactMdeState> {
       selectedTab,
       generateMarkdownPreview,
       loadSuggestions,
+      setSuggestions,
       suggestionTriggerCharacters,
       textAreaComponent
     } = this.props;
@@ -244,6 +245,7 @@ export class ReactMde extends React.Component<ReactMdeProps, ReactMdeState> {
             value={value}
             suggestionTriggerCharacters={suggestionTriggerCharacters}
             loadSuggestions={loadSuggestions}
+            setSuggestions={setSuggestions}
             onPossibleKeyCommand={
               this.commandOrchestrator.handlePossibleKeyCommand
             }

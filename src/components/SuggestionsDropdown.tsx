@@ -1,13 +1,13 @@
 import * as React from "react";
-import { CaretCoordinates } from "../util/TextAreaCaretPosition";
-import { useCallback } from "react";
 import { Suggestion } from "../types";
 import { classNames, ClassValue } from "../util/ClassNames";
+import { CaretCoordinates } from "../util/TextAreaCaretPosition";
 
 export interface SuggestionsDropdownProps {
   classes?: ClassValue;
   caret: CaretCoordinates;
   suggestions: Suggestion[];
+  placeholder?: React.ReactNode;
   suggestionsAutoplace: boolean;
   onSuggestionSelected: (index: number) => void;
   /**
@@ -17,15 +17,21 @@ export interface SuggestionsDropdownProps {
   textAreaRef: React.RefObject<HTMLTextAreaElement>;
 }
 
-export const SuggestionsDropdown: React.FunctionComponent<SuggestionsDropdownProps> = ({
+export const SuggestionsDropdown: React.FunctionComponent<
+  SuggestionsDropdownProps
+> = ({
   classes,
   suggestions,
   caret,
   onSuggestionSelected,
   suggestionsAutoplace,
   focusIndex,
-  textAreaRef
+  textAreaRef,
+  placeholder
 }) => {
+  if (!suggestions.length && !placeholder) {
+    return null;
+  }
   const handleSuggestionClick = (event: React.MouseEvent) => {
     event.preventDefault();
     const index = parseInt(event.currentTarget.attributes["data-index"].value);
@@ -60,6 +66,14 @@ export const SuggestionsDropdown: React.FunctionComponent<SuggestionsDropdownPro
   )
     style.right = textAreaRef.current.offsetWidth - left;
   else style.left = left;
+
+  if (!suggestions.length) {
+    return (
+      <ul className={classNames("mde-suggestions", classes)} style={style}>
+        <li className="mde-loading-placeholder">{placeholder}</li>
+      </ul>
+    );
+  }
 
   return (
     <ul className={classNames("mde-suggestions", classes)} style={style}>

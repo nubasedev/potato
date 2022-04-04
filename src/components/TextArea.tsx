@@ -1,19 +1,19 @@
 import * as React from "react";
-import { classNames, ClassValue } from "../util/ClassNames";
-import {
-  CaretCoordinates,
-  getCaretCoordinates
-} from "../util/TextAreaCaretPosition";
-import { Suggestion } from "../types";
-import { insertText } from "../util/InsertTextAtPosition";
-import { mod } from "../util/Math";
-import { SuggestionsDropdown } from "./SuggestionsDropdown";
 import {
   ButtonHTMLAttributes,
   DetailedHTMLFactory,
   TextareaHTMLAttributes
 } from "react";
+import { Suggestion } from "../types";
+import { classNames, ClassValue } from "../util/ClassNames";
+import { insertText } from "../util/InsertTextAtPosition";
+import { mod } from "../util/Math";
+import {
+  CaretCoordinates,
+  getCaretCoordinates
+} from "../util/TextAreaCaretPosition";
 import { ComponentSimilarTo } from "../util/type-utils";
+import { SuggestionsDropdown } from "./SuggestionsDropdown";
 
 export interface MentionState {
   status: "active" | "inactive" | "loading";
@@ -28,6 +28,7 @@ export interface MentionState {
    * The character that triggered the mention. Example: @
    */
   triggeredBy?: string;
+  placeholder?: React.ReactNode;
 }
 
 export interface TextAreaState {
@@ -48,7 +49,8 @@ export interface TextAreaProps {
   loadSuggestions?: (
     text: string,
     triggeredBy: string
-  ) => Promise<Suggestion[]>;
+  ) => Promise<Suggestion[] | { loading: React.ReactNode }>;
+  setSuggestions?: React.Ref<(suggestions: Suggestion[]) => void | null>;
 
   onPaste: React.ClipboardEventHandler;
   onDrop: React.DragEventHandler;
@@ -100,6 +102,9 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
   constructor(props) {
     super(props);
     this.state = { mention: { status: "inactive", suggestions: [] } };
+    if (props.setSuggestions) {
+      props.setSuggestions.current = this.setSuggestions;
+    }
   }
 
   suggestionsEnabled() {
@@ -126,6 +131,29 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
     }
   };
 
+  setSuggestions = (suggestions: Suggestion[]) => {
+    if (this.state.mention.status === "inactive") {
+      return;
+    }
+    if (!suggestions.length) {
+      this.setState({
+        mention: {
+          status: "inactive",
+          suggestions: []
+        }
+      });
+    } else {
+      this.setState({
+        mention: {
+          ...this.state.mention,
+          status: "active",
+          suggestions,
+          focusIndex: 0
+        }
+      });
+    }
+  };
+
   startLoadingSuggestions = (text: string) => {
     const promiseIndex = ++this.suggestionsPromiseIndex;
     const { loadSuggestions } = this.props;
@@ -136,7 +164,16 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
           // This means this promise resolved too late when the status has already been set to inactice
           return;
         } else if (this.suggestionsPromiseIndex === promiseIndex) {
-          if (!suggestions || !suggestions.length) {
+          if ("loading" in suggestions) {
+            this.setState({
+              mention: {
+                ...this.state.mention,
+                status: "active",
+                suggestions: [],
+                placeholder: suggestions.loading
+              }
+            });
+          } else if (!suggestions || !suggestions.length) {
             this.setState({
               mention: {
                 status: "inactive",
@@ -440,17 +477,19 @@ export class TextArea extends React.Component<TextAreaProps, TextAreaState> {
             event.preventDefault();
           }}
         />
-        {mention.status === "active" && mention.suggestions.length && (
-          <SuggestionsDropdown
-            classes={suggestionsDropdownClasses}
-            caret={mention.caret}
-            suggestions={mention.suggestions}
-            onSuggestionSelected={this.handleSuggestionSelected}
-            suggestionsAutoplace={this.props.suggestionsAutoplace}
-            focusIndex={mention.focusIndex}
-            textAreaRef={this.props.refObject}
-          />
-        )}
+        {mention.status === "active" &&
+          (mention.suggestions.length || mention.placeholder) && (
+            <SuggestionsDropdown
+              classes={suggestionsDropdownClasses}
+              caret={mention.caret}
+              suggestions={mention.suggestions}
+              placeholder={mention.placeholder}
+              onSuggestionSelected={this.handleSuggestionSelected}
+              suggestionsAutoplace={this.props.suggestionsAutoplace}
+              focusIndex={mention.focusIndex}
+              textAreaRef={this.props.refObject}
+            />
+          )}
       </div>
     );
   }
