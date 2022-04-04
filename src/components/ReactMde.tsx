@@ -228,7 +228,12 @@ export class ReactMde extends React.Component<ReactMdeProps, ReactMdeState> {
           writeButtonProps={finalChildProps.writeButton}
           previewButtonProps={finalChildProps.previewButton}
         />
-        <div className={classNames({ invisible: selectedTab !== "write" })}>
+        <div
+          className={classNames(
+            { invisible: selectedTab !== "write" },
+            "mde-invisible-wrapper"
+          )}
+        >
           <TextArea
             classes={classes?.textArea}
             suggestionsDropdownClasses={classes?.suggestionsDropdown}
