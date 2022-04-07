@@ -2,7 +2,6 @@
 logs
 *.log*
 .idea
-/lib/
+/lib
 node_modules
-/.vscode/
-ts-build/
+/.vscode

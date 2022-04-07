@@ -1,8 +1,6 @@
-import * as React from "react";
-import { DetailedHTMLFactory } from "react";
-
-export type ComponentSimilarTo<E extends HTMLElement, A> = React.ClassType<
+import { ClassType, DetailedHTMLFactory } from 'react'
+export type MdeComponentSimilarTo<E extends HTMLElement, A> = ClassType<
   Partial<DetailedHTMLFactory<A, E>>,
   any,
   any
->;
+>

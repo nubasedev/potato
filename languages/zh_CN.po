@@ -1,0 +1,55 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: ../src\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: gettext\n"
+
+msgid "Add bold text"
+msgstr "附加粗体"
+
+msgid "Insert code"
+msgstr "附加代码"
+
+msgid "Add header"
+msgstr "附加标题"
+
+msgid "Add image"
+msgstr "附加图像"
+
+msgid "Add italic text"
+msgstr "附加斜体"
+
+msgid "Add a link"
+msgstr "附加链接"
+
+msgid "Add unordered list"
+msgstr "附加无序列表"
+
+msgid "Add ordered list"
+msgstr "附加有序列表"
+
+msgid "Add checked list"
+msgstr "附加任务列表"
+
+msgid "Insert a quote"
+msgstr "附加引用"
+
+msgid "Add strikethrough text"
+msgstr "附加删除线"
+
+msgid "Write"
+msgstr "编辑"
+
+msgid "Preview"
+msgstr "预览"

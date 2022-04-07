@@ -1,44 +1,35 @@
-import { CommandMap, ToolbarCommands } from "../command";
-import { headerCommand } from "./headerCommand";
-import { boldCommand } from "./boldCommand";
-import { italicCommand } from "./italicCommand";
-import { strikeThroughCommand } from "./strikeThroughCommand";
-import { linkCommand } from "./linkCommand";
-import { quoteCommand } from "./quoteCommand";
-import { codeCommand } from "./codeCommand";
+import { MdeCommandMapProps, MdeToolbarCommands } from '../command'
+import { boldCommand } from './bold'
+import { codeCommand } from './code'
+import { headerCommand } from './header'
+import { imageCommand } from './image'
+import { italicCommand } from './italic'
+import { linkCommand } from './link'
 import {
   checkedListCommand,
   orderedListCommand,
-  unorderedListCommand
-} from "./listCommands";
-import { imageCommand } from "./imageCommand";
-import { saveImageCommand } from "./save-image-command";
-
-export function getDefaultToolbarCommands(): ToolbarCommands {
-  return [
-    ["header", "bold", "italic", "strikethrough"],
-    ["link", "quote", "code", "image"],
-    ["unordered-list", "ordered-list", "checked-list"]
-  ];
-}
-
-export function getDefaultCommandMap(): CommandMap {
-  return {
-    header: headerCommand,
-    bold: boldCommand,
-    italic: italicCommand,
-    strikethrough: strikeThroughCommand,
-    link: linkCommand,
-    quote: quoteCommand,
-    code: codeCommand,
-    image: imageCommand,
-    "unordered-list": unorderedListCommand,
-    "ordered-list": orderedListCommand,
-    "checked-list": checkedListCommand,
-    "save-image": saveImageCommand
-  };
-}
-
+  unorderedListCommand,
+} from './list'
+import { quoteCommand } from './quote'
+import { strikeThroughCommand } from './strike-through'
+export const getDefaultToolbarCommands = (): MdeToolbarCommands => [
+  ['header', 'bold', 'italic', 'strikethrough'],
+  ['link', 'quote', 'code', 'image'],
+  ['unorderedList', 'orderedList', 'checkedList'],
+]
+export const getDefaultCommandMap = (): MdeCommandMapProps => ({
+  header: headerCommand,
+  bold: boldCommand,
+  italic: italicCommand,
+  strikethrough: strikeThroughCommand,
+  link: linkCommand,
+  quote: quoteCommand,
+  code: codeCommand,
+  image: imageCommand,
+  unorderedList: unorderedListCommand,
+  orderedList: orderedListCommand,
+  checkedList: checkedListCommand,
+})
 export function getDefaultSaveImageCommandName() {
-  return "save-image";
+  return 'save-image'
 }

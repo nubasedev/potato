@@ -1,46 +1,60 @@
-const webpack = require('webpack');
+const webpack = require('webpack')
+const path = require('path')
+const createStyledComponentsTransformer =
+  require('typescript-plugin-styled-components').default
+const styledComponentsTransformer = createStyledComponentsTransformer()
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-    mode: "development",
-
-    entry: [
-        './demo/client.tsx'
-    ],
-
-    output: {
-        filename: 'bundle.js',
-        path: '/',
-        publicPath: '/'
-    },
-
-    devtool: 'source-map',
-
-    resolve: {
-        extensions: ['.ts', '.tsx', '.js', '.jsx']
-    },
-
-    module: {
-        rules: [
-            { test: /\.ts(x?)/, use: ['awesome-typescript-loader'], exclude: /node_modules/ },
-            {test: /\.css/, use: ['style-loader', 'css-loader']},
-            {
-                test: /\.scss$/, use: [
-                {
-                    loader: 'style-loader'
-                },
-                {
-                    loader: 'css-loader', options: {sourceMap: true}
-                },
-                {
-                    loader: 'sass-loader', options: {sourceMap: true}
-                }]
+  mode: 'development',
+  entry: {
+    app: path.resolve(__dirname, 'demo/client.tsx'),
+  },
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    // publicPath: '/static/',
+  },
+  devServer: {
+    port: 4000,
+    open: true,
+    hot: true,
+  },
+  devtool: 'source-map',
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js'],
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      React: 'react',
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      template: 'demo/index.html',
+      hash: true, // Cache busting
+      filename: '../dist/index.html',
+    }),
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.ts(x?)/,
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+              getCustomTransformers: () => ({
+                before: [styledComponentsTransformer],
+              }),
             },
-            { test: /\.jpe?g$|\.gif$|\.png$|\.ico$/, use: 'file-loader?name=[name].[ext]' },
-            { test: /\.eot|\.ttf|\.svg|\.woff2?/, use: 'file-loader?name=[name].[ext]' },
-        ]
-    },
-
-    stats: {
-        colors: true
-    }
-};
+          },
+        ],
+        exclude: /node_modules/,
+      },
+    ],
+  },
+  stats: {
+    colors: true,
+  },
+}
