@@ -93,6 +93,6 @@ export const checkedListCommand = (): MdeCommandProps => ({
     title: MdeLanguage.gettext('Add checked list'),
   },
   execute: ({ initialState, textApi }) => {
-    makeList(initialState, textApi, () => `- [] `)
+    makeList(initialState, textApi, () => `- [ ] `)
   },
 })
