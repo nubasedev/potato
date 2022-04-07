@@ -34,6 +34,6 @@
     ],
     "incremental": true
   },
-  "include": ["./src/**/*"],
-  "exclude": ["./node_modules/**/*", "**/__tests__/**"]
+  "include": ["./src/**/*", "./demo/**/*"],
+  "exclude": ["./node_modules/**/*", "**/__tests__/**", "./lib/**/*"]
 }

@@ -9,9 +9,10 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 2021,
+    "ecmaVersion": "latest",
     "sourceType": "module",
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.json",
+    "ignorePatterns": ["demo/**/*"]
   },
   "settings": {
     "react": {
