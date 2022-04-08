@@ -1,2 +1,5 @@
+import { MdeCommandProps } from './commands/command'
 import { Mde } from './components'
-export { Mde }
+import { selectWord } from './util/markdown-util'
+export { Mde, selectWord }
+export type { MdeCommandProps }
