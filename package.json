@@ -1,6 +1,6 @@
 {
   "name": "fc-mde",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "description": "React Markdown Editor (FC)",
   "main": "./lib/index.js",
   "files": [
@@ -27,6 +27,7 @@
     "markdown-editor"
   ],
   "author": "Andre Pena",
+  "homepage": "https://github.com/kmvan/react-mde.git#readme",
   "contributors": [
     {
       "name": "Km.Van",
@@ -36,7 +37,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/andrerpena/react-mde.git/issues"
+    "url": "https://github.com/kmvan/react-mde.git/issues"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
@@ -79,7 +80,6 @@
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.8.0"
   },
-  "homepage": "https://github.com/andrerpena/react-mde.git#readme",
   "peerDependencies": {
     "react": "^17.0.0",
     "react-dom": "^17.0.0"
