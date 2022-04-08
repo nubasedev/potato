@@ -1,10 +1,10 @@
 {
   "name": "fc-mde",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.4",
   "description": "React Markdown Editor (FC)",
-  "main": "./lib/index.js",
+  "main": "lib/index.js",
   "files": [
-    "./lib/**/*"
+    "lib/**/*"
   ],
   "scripts": {
     "dev": "webpack-dev-server --config ./webpack.config.demo.dev.js",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andrerpena/react-mde.git"
+    "url": "git+https://github.com/kmvan/react-mde.git"
   },
   "keywords": [
     "react",
@@ -26,13 +26,11 @@
     "text-editor",
     "markdown-editor"
   ],
-  "author": "Andre Pena",
+  "author": "Km.Van",
   "homepage": "https://github.com/kmvan/react-mde.git#readme",
   "contributors": [
     {
-      "name": "Km.Van",
-      "email": "kmvan.com@gmail.com",
-      "url": "https://inn-studio.com/"
+      "name": "Andre Pena"
     }
   ],
   "license": "MIT",

@@ -11,8 +11,7 @@
     },
     "ecmaVersion": "latest",
     "sourceType": "module",
-    "project": "./tsconfig.json",
-    "ignorePatterns": ["demo/**/*"]
+    "project": "./tsconfig.json"
   },
   "settings": {
     "react": {
