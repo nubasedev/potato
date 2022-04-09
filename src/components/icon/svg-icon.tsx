@@ -12,7 +12,7 @@ import {
   faStrikethrough,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { FC } from 'react'
+import { FC, HTMLAttributes } from 'react'
 import styled from 'styled-components'
 import { MdeIconProviderProps } from './typings'
 const StyledMdeSvg = styled.div`
@@ -23,7 +23,7 @@ const StyledMdeSvg = styled.div`
   overflow: visible;
   vertical-align: -0.125em;
 `
-const MdeSvgContainer: FC = (props) => (
+const MdeSvgContainer: FC<HTMLAttributes<HTMLDivElement>> = (props) => (
   <StyledMdeSvg className='mde__svg-icon' {...props} />
 )
 export const MdeSvgIcon: FC<MdeIconProviderProps> = ({ icon }) => {

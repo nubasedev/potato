@@ -1,19 +1,24 @@
 {
   "name": "fc-mde",
-  "version": "1.0.0-alpha.8",
+  "version": "1.0.0-alpha.29",
   "description": "React Markdown Editor (FC)",
-  "main": "lib/index.js",
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
+  "umd:main": "lib/umd/index.js",
+  "types": "lib/types/index.d.js",
   "files": [
     "lib"
   ],
-  "types": "lib/index.d.ts",
   "scripts": {
-    "dev": "webpack-dev-server --config ./webpack.config.demo.dev.js",
+    "dev": "webpack-dev-server --config ./config/webpack.config.demo.dev.js",
     "lang": "node ./build-lang.js",
-    "webpack": "webpack --config webpack.config.demo.dev.js",
-    "webpack:prod": "webpack --config webpack.config.demo.prod.js",
-    "tsc": "npx tsc",
-    "tsc:build": "npx tsc -p ./tsconfig.build.json"
+    "build": "npm run build:cjs && npm run build:esm && npm run build:umd && npm run build:types",
+    "build:cjs": "node cleanup cjs && tsc -p config/tsconfig.cjs.json",
+    "build:esm": "node cleanup esm && tsc -p config/tsconfig.esm.json",
+    "build:umd": "node cleanup umd && webpack --config config/webpack.config.js",
+    "build:types": "node cleanup types && tsc -p config/tsconfig.typings.json",
+    "clean": "node cleanup",
+    "package": "npm run build && npm pack"
   },
   "repository": {
     "type": "git",
@@ -39,6 +44,9 @@
     "url": "https://github.com/kmvan/react-mde.git/issues"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-brands-svg-icons": "^6.1.1",
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
@@ -53,7 +61,7 @@
     "classnames": "^2.3.1",
     "cross-env": "^7.0.3",
     "deep-sort-object": "^1.0.2",
-    "eslint": "^8.12.0",
+    "eslint": "^8.13.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-node": "^11.1.0",
@@ -85,5 +93,8 @@
   },
   "resolutions": {
     "@types/react": "18.0.0"
+  },
+  "dependencies": {
+    "@babel/node": "^7.16.8"
   }
 }

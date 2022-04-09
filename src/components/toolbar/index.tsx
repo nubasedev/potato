@@ -33,7 +33,6 @@ const StyledMdeTabBtn = styled.button`
 `
 export const MdeToolbar: FC<MdeToolbarProps> = ({
   onTabChange,
-  children,
   buttons,
   onCommand,
   readOnly,
@@ -50,7 +49,7 @@ export const MdeToolbar: FC<MdeToolbarProps> = ({
     e.preventDefault()
     onTabChange(tab)
   }
-  if (!buttons?.length && children) {
+  if (!buttons?.length) {
     return null
   }
   const writePreviewTabs = (

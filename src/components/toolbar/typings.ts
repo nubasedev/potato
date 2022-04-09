@@ -27,4 +27,5 @@ export interface MdeToolbarBtnProps {
 }
 export interface MdeToolbarBtnGroupProps {
   hidden: boolean
+  children: ReactNode
 }
