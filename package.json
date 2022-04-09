@@ -1,6 +1,6 @@
 {
   "name": "fc-mde",
-  "version": "1.0.0-alpha.30",
+  "version": "1.0.0-alpha.31",
   "description": "React Markdown Editor (FC)",
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
@@ -44,9 +44,6 @@
     "url": "https://github.com/kmvan/react-mde.git/issues"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.9",
-    "@babel/preset-env": "^7.16.11",
-    "@babel/preset-typescript": "^7.16.7",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-brands-svg-icons": "^6.1.1",
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
@@ -93,8 +90,5 @@
   },
   "resolutions": {
     "@types/react": "18.0.0"
-  },
-  "dependencies": {
-    "@babel/node": "^7.16.8"
   }
 }
