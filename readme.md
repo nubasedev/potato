@@ -11,8 +11,11 @@ npm i fc-mde
 # USAGE
 
 ```
-I am coding...
+import { Mde } from 'fc-mde/lib/cjs'
 
+// See demo/App.tsx
+
+// More, I am coding...
 ```
 
 # TODO
