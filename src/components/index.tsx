@@ -108,6 +108,7 @@ export const Mde: FC<MdeProps> = ({
           value={text}
           setValue={setText}
           textareaComponent={textareaComponent}
+          onKeyCommand={commandOrchestrator.handleKeyCommand}
           // onDrop={handleDrop}
           // onPaste={handlePaste}
           {...textareaProps}

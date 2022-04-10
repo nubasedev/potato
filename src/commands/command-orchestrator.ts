@@ -98,7 +98,7 @@ export class MdeCommandOrchestrator {
    * Tries to find a command the wants to handle the keyboard event.
    * If a command is found, it is executed and the function returns
    */
-  public handlePossibleKeyCommand = async (
+  public handleKeyCommand = async (
     e: KeyboardEvent<HTMLTextAreaElement>,
   ): Promise<boolean> => {
     for (const commandName of this.keyActivatedCommands) {

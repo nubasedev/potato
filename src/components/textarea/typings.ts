@@ -1,4 +1,4 @@
-import { TextareaHTMLAttributes } from 'react'
+import { KeyboardEvent, TextareaHTMLAttributes } from 'react'
 import { MdeComponentSimilarTo } from '../../util/type-utils'
 export interface MdeTextareaProps
   extends TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -12,8 +12,8 @@ export interface MdeTextareaProps
     TextareaHTMLAttributes<HTMLTextAreaElement>
   >
   /**
-   * On keydown, the TextArea will trigger "onPossibleKeyCommand" as an opportunity for React-Mde to
+   * On keydown, the TextArea will trigger "onKeyCommand" as an opportunity for React-Mde to
    * execute a command. If a command is executed, React-Mde should return true, otherwise, false.
    */
-  // onPossibleKeyCommand?: (e: KeyboardEvent<HTMLTextAreaElement>) => boolean
+  onKeyCommand?: (e: KeyboardEvent<HTMLTextAreaElement>) => Promise<boolean>
 }

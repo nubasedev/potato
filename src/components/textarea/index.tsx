@@ -19,7 +19,7 @@ const StyledMdeTextareaContainer = styled.div`
   }
 `
 export const MdeTextarea = forwardRef<HTMLTextAreaElement, MdeTextareaProps>(
-  ({ value, setValue, textareaComponent, ...props }, ref) => {
+  ({ value, setValue, textareaComponent, onKeyCommand, ...props }, ref) => {
     const [id] = useState<string>((Math.random() + 1).toString(36).substring(7))
     const TextareaComponent = (textareaComponent ||
       'textarea') as DetailedHTMLFactory<
@@ -37,6 +37,7 @@ export const MdeTextarea = forwardRef<HTMLTextAreaElement, MdeTextareaProps>(
           className='mde__textarea'
           value={value}
           onChange={(e) => setValue(e.target.value)}
+          onKeyDown={onKeyCommand}
           data-testid='text-area'
           data-id={id}
           {...props}
