@@ -1,6 +1,6 @@
 # 📝 React Markdown Editor (Function Component version)
 
-> Useing Function component and Styled-components lib, no extra css file.
+> Features: Hooks, FC, Styled-components, no extra css file, support custom button commands, support i10n or l18n
 
 # TESTING, DO NOT USE IT.
 
@@ -25,3 +25,4 @@ import { Mde } from 'fc-mde/lib/cjs'
 - [ ] Add paste image to basee64 format.
 - [ ] Add upload image to base64 format.
 - [ ] Add suggestion.
+- [ ] Add light / dark theme.
