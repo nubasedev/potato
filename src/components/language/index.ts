@@ -8,7 +8,6 @@ class Main {
     this.langs = require(`./${lang}.json`)
   }
   public gettext = (text: string, context = ''): string => {
-    console.log(this.langs)
     const id = `${context || ''}${text}`
     return this.langs?.[id] ?? text
   }

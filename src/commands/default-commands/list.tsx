@@ -64,7 +64,7 @@ export const makeList = (
   const selectionEnd =
     selectionStart + modifiedText.modifiedText.length - oneLinerOffset
   // Adjust the selection to not contain the **
-  api.setSelectionRange({
+  return api.setSelectionRange({
     start: selectionStart,
     end: selectionEnd,
   })
@@ -74,8 +74,8 @@ export const unorderedListCommand = (): MdeCommandProps => ({
     'aria-label': MdeLanguage.gettext('Add unordered list'),
     title: MdeLanguage.gettext('Add unordered list'),
   },
-  execute: ({ initialState, textApi }) => {
-    makeList(initialState, textApi, '- ')
+  execute: ({ initialState, textApi, setText }) => {
+    setText(makeList(initialState, textApi, '- ').text)
   },
 })
 export const orderedListCommand = (): MdeCommandProps => ({
@@ -83,8 +83,10 @@ export const orderedListCommand = (): MdeCommandProps => ({
     'aria-label': MdeLanguage.gettext('Add ordered list'),
     title: MdeLanguage.gettext('Add ordered list'),
   },
-  execute: ({ initialState, textApi }) => {
-    makeList(initialState, textApi, (item, index) => `${index + 1}. `)
+  execute: ({ initialState, textApi, setText }) => {
+    setText(
+      makeList(initialState, textApi, (item, index) => `${index + 1}. `).text,
+    )
   },
 })
 export const checkedListCommand = (): MdeCommandProps => ({
@@ -92,7 +94,7 @@ export const checkedListCommand = (): MdeCommandProps => ({
     'aria-label': MdeLanguage.gettext('Add checked list'),
     title: MdeLanguage.gettext('Add checked list'),
   },
-  execute: ({ initialState, textApi }) => {
-    makeList(initialState, textApi, () => `- [ ] `)
+  execute: ({ initialState, textApi, setText }) => {
+    setText(makeList(initialState, textApi, () => `- [ ] `).text)
   },
 })

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { hot } from 'react-hot-loader'
 import Showdown from 'showdown'
 import { Mde } from '../src'
@@ -7,6 +7,7 @@ import { MdeTabProps } from '../src/components/typings'
 MdeLanguage.setLang('zh-cn')
 export const App = hot(module)(() => {
   const [value, setValue] = useState('### Hello World')
+  const refTextarea = useRef<HTMLTextAreaElement>(null)
   const [tab, setTab] = useState<MdeTabProps>('write')
   const converter = new Showdown.Converter({
     tables: true,
@@ -68,9 +69,10 @@ export const App = hot(module)(() => {
   // }
   return (
     <Mde
+      text={value}
       setText={handleValueChange}
       onTabChange={handleTabChange}
-      text={value}
+      refTextarea={refTextarea}
       generateMarkdownPreview={async (markdown) => {
         return converter.makeHtml(markdown)
       }}

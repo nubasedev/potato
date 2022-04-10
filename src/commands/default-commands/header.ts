@@ -16,7 +16,7 @@ const setHeader = (
   // Add the prefix to the selection
   const state2 = api.replaceSelection(`${prefix}${state1.selectedText}`)
   // Adjust the selection to not contain the prefix
-  api.setSelectionRange({
+  return api.setSelectionRange({
     start: state2.selection.end - state1.selectedText.length,
     end: state2.selection.end,
   })
@@ -26,7 +26,7 @@ export const headerCommand = (): MdeCommandProps => ({
     'aria-label': MdeLanguage.gettext('Add header'),
     title: MdeLanguage.gettext('Add header'),
   },
-  execute: ({ initialState, textApi }) => {
-    setHeader(initialState, textApi, '### ')
+  execute: ({ initialState, textApi, setText }) => {
+    setText(setHeader(initialState, textApi, '### ').text)
   },
 })

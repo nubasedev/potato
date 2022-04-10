@@ -10,7 +10,7 @@ export const codeCommand = (): MdeCommandProps => ({
     'aria-label': MdeLanguage.gettext('Insert code'),
     title: MdeLanguage.gettext('Insert code'),
   },
-  execute: ({ initialState, textApi }) => {
+  execute: ({ initialState, textApi, setText }) => {
     // Adjust the selection to encompass the whole word if the caret is inside one
     const newSelectionRange = selectWord({
       text: initialState.text,
@@ -44,9 +44,11 @@ export const codeCommand = (): MdeCommandProps => ({
     )
     const selectionStart = state1.selection.start + breaksBeforeCount + 4
     const selectionEnd = selectionStart + state1.selectedText.length
-    textApi.setSelectionRange({
-      start: selectionStart,
-      end: selectionEnd,
-    })
+    setText(
+      textApi.setSelectionRange({
+        start: selectionStart,
+        end: selectionEnd,
+      }).text,
+    )
   },
 })

@@ -15,51 +15,51 @@ import {
   getDefaultSaveImageCommandName,
 } from './default-commands/defaults'
 export class MdeTextAreaTextApi implements MdeTextApi {
-  private readonly textAreaRef: RefObject<HTMLTextAreaElement>
-  constructor(textAreaRef: RefObject<HTMLTextAreaElement>) {
-    this.textAreaRef = textAreaRef
+  private readonly refTextarea: RefObject<HTMLTextAreaElement>
+  constructor(refTextarea: RefObject<HTMLTextAreaElement>) {
+    this.refTextarea = refTextarea
   }
   public replaceSelection = (text: string): MdeTextState => {
-    const textArea = this.textAreaRef.current as HTMLTextAreaElement
-    insertText(textArea, text)
-    return getStateFromTextArea(textArea)
+    const textarea = this.refTextarea.current as HTMLTextAreaElement
+    insertText(textarea, text)
+    return getStateFromTextArea(textarea)
   }
   public setSelectionRange = (selection: MdeSelection): MdeTextState => {
-    const textArea = this.textAreaRef.current as HTMLTextAreaElement
-    textArea.focus()
-    textArea.selectionStart = selection.start
-    textArea.selectionEnd = selection.end
-    return getStateFromTextArea(textArea)
+    const textarea = this.refTextarea.current as HTMLTextAreaElement
+    textarea.focus()
+    textarea.selectionStart = selection.start
+    textarea.selectionEnd = selection.end
+    return getStateFromTextArea(textarea)
   }
   public getState = (): MdeTextState => {
-    const textArea = this.textAreaRef.current as HTMLTextAreaElement
-    return getStateFromTextArea(textArea)
+    const textarea = this.refTextarea.current as HTMLTextAreaElement
+    return getStateFromTextArea(textarea)
   }
 }
 export const getStateFromTextArea = (
-  textArea: HTMLTextAreaElement,
+  textarea: HTMLTextAreaElement,
 ): MdeTextState => {
   return {
     selection: {
-      start: textArea.selectionStart,
-      end: textArea.selectionEnd,
+      start: textarea.selectionStart,
+      end: textarea.selectionEnd,
     },
-    text: textArea.value,
-    selectedText: textArea.value.slice(
-      textArea.selectionStart,
-      textArea.selectionEnd,
+    text: textarea.value,
+    selectedText: textarea.value.slice(
+      textarea.selectionStart,
+      textarea.selectionEnd,
     ),
   }
 }
 interface MdeCommandOrchestratorProps {
   setText: (text: string) => void
   customCommands: MdeCommandMapProps
-  textArea: RefObject<HTMLTextAreaElement>
+  refTextarea: RefObject<HTMLTextAreaElement>
   pasteOptions?: MdePasteOptions
 }
 export class MdeCommandOrchestrator {
   private readonly setText: (text: string) => void
-  private readonly textAreaRef: RefObject<HTMLTextAreaElement>
+  private readonly refTextarea: RefObject<HTMLTextAreaElement>
   private readonly textApi: MdeTextApi
   private readonly commandMap: MdeCommandMapProps
   /**
@@ -74,7 +74,7 @@ export class MdeCommandOrchestrator {
   constructor({
     setText,
     customCommands,
-    textArea,
+    refTextarea,
     pasteOptions,
   }: MdeCommandOrchestratorProps) {
     if (pasteOptions && !pasteOptions.saveImage) {
@@ -83,8 +83,8 @@ export class MdeCommandOrchestrator {
     this.commandMap = { ...getDefaultCommandMap(), ...(customCommands || {}) }
     this.pasteOptions = pasteOptions
     this.keyActivatedCommands = extractKeyActivatedCommands(customCommands)
-    this.textAreaRef = textArea
-    this.textApi = new MdeTextAreaTextApi(textArea)
+    this.refTextarea = refTextarea
+    this.textApi = new MdeTextAreaTextApi(refTextarea)
     this.setText = setText
   }
   public getCommand = (name: string): MdeCommandProps => {
@@ -115,21 +115,17 @@ export class MdeCommandOrchestrator {
     context?: MdeCommandContext,
   ): Promise<void> => {
     if (this.isExecuting) {
-      // The simplest thing to do is to ignore commands while
-      // there is already a command executing. The alternative would be to queue commands
-      // but there is no guarantee that the state after one command executes will still be compatible
-      // with the next one. In fact, it is likely not to be.
       return
     }
     this.isExecuting = true
-    const command = this.commandMap[commandName]
-    const textarea = this.textAreaRef.current as HTMLTextAreaElement
-    await command().execute({
-      initialState: getStateFromTextArea(textarea),
+    const textarea = this.refTextarea.current as HTMLTextAreaElement
+    const initialState = getStateFromTextArea(textarea)
+    await this.getCommand(commandName).execute({
+      setText: this.setText,
+      initialState,
       textApi: this.textApi,
       context,
     })
-    this.setText(textarea.value)
     this.isExecuting = false
   }
   /**

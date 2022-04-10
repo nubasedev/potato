@@ -10,7 +10,7 @@ export const quoteCommand = (): MdeCommandProps => ({
     'aria-label': MdeLanguage.gettext('Insert a quote'),
     title: MdeLanguage.gettext('Insert a quote'),
   },
-  execute: ({ initialState, textApi }) => {
+  execute: ({ initialState, textApi, setText }) => {
     // Adjust the selection to encompass the whole word if the caret is inside one
     const newSelectionRange = selectWord({
       text: initialState.text,
@@ -33,9 +33,11 @@ export const quoteCommand = (): MdeCommandProps => ({
     )
     const selectionStart = state1.selection.start + breaksBeforeCount + 2
     const selectionEnd = selectionStart + state1.selectedText.length
-    textApi.setSelectionRange({
-      start: selectionStart,
-      end: selectionEnd,
-    })
+    setText(
+      textApi.setSelectionRange({
+        start: selectionStart,
+        end: selectionEnd,
+      }).text,
+    )
   },
 })

@@ -3,6 +3,7 @@ import { MdeTextApi, MdeTextState } from '../typings/command-options'
 import { MdeHandleKeyCommand } from '../typings/function-types'
 export type MdeGetIcon = (iconName: string) => ReactNode
 export interface MdeExecuteOptions {
+  setText: (text: string) => void
   initialState: MdeTextState
   textApi: MdeTextApi
   context?: MdeCommandContext

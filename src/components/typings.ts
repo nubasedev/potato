@@ -15,12 +15,7 @@ export interface MdeProps {
   selectedTab: MdeTabProps
   onTabChange: (tab: MdeTabProps) => void
   generateMarkdownPreview: MdeGenerateMarkdownPreview
-  minEditorHeight?: number
-  maxEditorHeight?: number
-  initialEditorHeight?: number
-  minPreviewHeight?: number
-  heightUnits?: string
-  refTextarea?: RefObject<HTMLTextAreaElement>
+  refTextarea: RefObject<HTMLTextAreaElement>
   toolbarCommands?: string[][]
   commands?: MdeCommandMapProps
   getIcon?: MdeGetIcon
@@ -33,10 +28,10 @@ export interface MdeProps {
   textareaProps?: TextareaHTMLAttributes<HTMLTextAreaElement>
   // paste?: MdePasteOptions
   /**
-   * Custom textarea component. "textAreaComponent" can be any React component which
+   * Custom textarea component. "textareaComponent" can be any React component which
    * props are a subset of the props of an HTMLTextAreaElement
    */
-  textAreaComponent?: MdeComponentSimilarTo<
+  textareaComponent?: MdeComponentSimilarTo<
     HTMLTextAreaElement,
     TextareaHTMLAttributes<HTMLTextAreaElement>
   >

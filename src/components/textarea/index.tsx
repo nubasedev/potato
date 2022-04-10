@@ -1,4 +1,10 @@
-import { DetailedHTMLFactory, forwardRef, TextareaHTMLAttributes } from 'react'
+import {
+  DetailedHTMLFactory,
+  forwardRef,
+  TextareaHTMLAttributes,
+  useEffect,
+  useState,
+} from 'react'
 import styled from 'styled-components'
 import { MdeTextareaProps } from './typings'
 const StyledMdeTextareaContainer = styled.div`
@@ -13,42 +19,26 @@ const StyledMdeTextareaContainer = styled.div`
   }
 `
 export const MdeTextarea = forwardRef<HTMLTextAreaElement, MdeTextareaProps>(
-  (
-    {
-      value,
-      setValue,
-      height,
-      maxHeight,
-      minHeight,
-      heightUnits,
-      textareaComponent,
-      ...props
-    },
-    ref,
-  ) => {
+  ({ value, setValue, textareaComponent, ...props }, ref) => {
+    const [id] = useState<string>((Math.random() + 1).toString(36).substring(7))
     const TextareaComponent = (textareaComponent ||
       'textarea') as DetailedHTMLFactory<
       TextareaHTMLAttributes<HTMLTextAreaElement>,
       HTMLTextAreaElement
     >
-    const heightVal = height && heightUnits ? height + heightUnits : height
-    const maxHeightVal =
-      maxHeight && heightUnits ? maxHeight + heightUnits : maxHeight
-    const minHeightVal =
-      minHeight && heightUnits ? minHeight + heightUnits : minHeight
+    useEffect(() => {
+      const event = new Event('input')
+      document.querySelector(`[data-id="${id}"]`)?.dispatchEvent(event)
+    }, [id])
     return (
       <StyledMdeTextareaContainer className='mde__textarea__container'>
         <TextareaComponent
-          className='mde__textarea'
-          style={{
-            height: heightVal,
-            minHeight: minHeightVal,
-            maxHeight: maxHeightVal,
-          }}
           ref={ref}
+          className='mde__textarea'
           value={value}
           onChange={(e) => setValue(e.target.value)}
           data-testid='text-area'
+          data-id={id}
           {...props}
         />
       </StyledMdeTextareaContainer>

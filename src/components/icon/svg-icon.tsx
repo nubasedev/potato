@@ -14,14 +14,15 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FC, HTMLAttributes } from 'react'
 import styled from 'styled-components'
+import { MDE_STYLE_ICON_SIZE } from '../config'
 import { MdeIconProviderProps } from './typings'
 const StyledMdeSvg = styled.div`
-  width: 1em;
-  height: 1em;
-  display: inline-block;
-  font-size: inherit;
-  overflow: visible;
-  vertical-align: -0.125em;
+  width: ${MDE_STYLE_ICON_SIZE};
+  height: ${MDE_STYLE_ICON_SIZE};
+  svg {
+    width: ${MDE_STYLE_ICON_SIZE};
+    height: ${MDE_STYLE_ICON_SIZE};
+  }
 `
 const MdeSvgContainer: FC<HTMLAttributes<HTMLDivElement>> = (props) => (
   <StyledMdeSvg className='mde__svg-icon' {...props} />

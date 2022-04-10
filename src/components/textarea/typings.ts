@@ -3,12 +3,8 @@ import { MdeComponentSimilarTo } from '../../util/type-utils'
 export interface MdeTextareaProps
   extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   setValue: (text: string) => void
-  height?: number
-  maxHeight?: number
-  minHeight?: number
-  heightUnits?: string
   /**
-   * Custom textarea component. "textAreaComponent" can be any React component which
+   * Custom textarea component. "textareaComponent" can be any React component which
    * props are a subset of the props of an HTMLTextAreaElement
    */
   textareaComponent?: MdeComponentSimilarTo<

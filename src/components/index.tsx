@@ -1,4 +1,4 @@
-import { FC, useRef, useState } from 'react'
+import { FC, useRef } from 'react'
 import styled from 'styled-components'
 import { MdeCommandOrchestrator } from '../commands/command-orchestrator'
 import {
@@ -28,14 +28,11 @@ const StyledMdeContainer = styled.div`
 `
 export const Mde: FC<MdeProps> = ({
   setText,
+  refTextarea,
   commands = getDefaultCommandMap(),
   toolbarCommands = getDefaultToolbarCommands(),
   getIcon = (name: string) => <MdeSvgIcon icon={name} />,
   readOnly = false,
-  minEditorHeight = 200,
-  maxEditorHeight = 500,
-  minPreviewHeight = 200,
-  heightUnits = 'px',
   selectedTab = 'write',
   disablePreview = false,
   // paste,
@@ -43,26 +40,19 @@ export const Mde: FC<MdeProps> = ({
   loadingPreview,
   text,
   generateMarkdownPreview,
-  textAreaComponent,
-  initialEditorHeight,
+  textareaComponent,
   commandButtons,
   writeButton,
   previewButton,
   textareaProps,
 }) => {
-  const refTextarea = useRef<HTMLTextAreaElement>(null)
   const refPreview = useRef<HTMLDivElement>(null)
-  const [editorHeight] = useState<number>(
-    initialEditorHeight || Math.min(maxEditorHeight, minEditorHeight),
-  )
-  const [commandOrchestrator] = useState<MdeCommandOrchestrator>(
-    new MdeCommandOrchestrator({
-      setText,
-      customCommands: commands,
-      textArea: refTextarea,
-      // paste: paste? { ...pasteOptionDefaults, ...paste } : undefined,
-    }),
-  )
+  const commandOrchestrator = new MdeCommandOrchestrator({
+    setText,
+    customCommands: commands,
+    refTextarea,
+    // paste: paste? { ...pasteOptionDefaults, ...paste } : undefined,
+  })
   // const handlePaste = async (e: ClipboardEvent<HTMLTextAreaElement>) => {
   //   if (!paste?.saveImage) {
   //     return
@@ -117,11 +107,7 @@ export const Mde: FC<MdeProps> = ({
           ref={refTextarea}
           value={text}
           setValue={setText}
-          textareaComponent={textAreaComponent}
-          height={editorHeight}
-          heightUnits={heightUnits}
-          minHeight={minEditorHeight}
-          maxHeight={maxEditorHeight}
+          textareaComponent={textareaComponent}
           // onDrop={handleDrop}
           // onPaste={handlePaste}
           {...textareaProps}
@@ -131,8 +117,6 @@ export const Mde: FC<MdeProps> = ({
         <MdePreview
           ref={refPreview}
           loadingPreview={loadingPreview}
-          minHeight={minPreviewHeight}
-          heightUnits={heightUnits}
           generateMarkdownPreview={generateMarkdownPreview}
           markdown={text}
         />

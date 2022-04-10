@@ -6,7 +6,7 @@ export const strikeThroughCommand = (): MdeCommandProps => ({
     'aria-label': MdeLanguage.gettext('Add strikethrough text'),
     title: MdeLanguage.gettext('Add strikethrough text'),
   },
-  execute: ({ initialState, textApi }) => {
+  execute: ({ initialState, textApi, setText }) => {
     // Adjust the selection to encompass the whole word if the caret is inside one
     const newSelectionRange = selectWord({
       text: initialState.text,
@@ -16,9 +16,11 @@ export const strikeThroughCommand = (): MdeCommandProps => ({
     // Replaces the current selection with the strikethrough mark up
     const state2 = textApi.replaceSelection(`~~${state1.selectedText}~~`)
     // Adjust the selection to not contain the ~~
-    textApi.setSelectionRange({
-      start: state2.selection.end - 2 - state1.selectedText.length,
-      end: state2.selection.end - 2,
-    })
+    setText(
+      textApi.setSelectionRange({
+        start: state2.selection.end - 2 - state1.selectedText.length,
+        end: state2.selection.end - 2,
+      }).text,
+    )
   },
 })

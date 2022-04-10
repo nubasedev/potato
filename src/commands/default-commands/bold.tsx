@@ -6,7 +6,7 @@ export const boldCommand = (): MdeCommandProps => ({
     'aria-label': MdeLanguage.gettext('Add bold text'),
     title: MdeLanguage.gettext('Add bold text'),
   },
-  execute: ({ initialState, textApi }) => {
+  execute: ({ initialState, textApi, setText }) => {
     // Adjust the selection to encompass the whole word if the caret is inside one
     const newSelectionRange = selectWord({
       text: initialState.text,
@@ -16,10 +16,12 @@ export const boldCommand = (): MdeCommandProps => ({
     // Replaces the current selection with the bold mark up
     const state2 = textApi.replaceSelection(`**${state1.selectedText}**`)
     // Adjust the selection to not contain the **
-    textApi.setSelectionRange({
-      start: state2.selection.end - 2 - state1.selectedText.length,
-      end: state2.selection.end - 2,
-    })
+    setText(
+      textApi.setSelectionRange({
+        start: state2.selection.end - 2 - state1.selectedText.length,
+        end: state2.selection.end - 2,
+      }).text,
+    )
   },
   handleKeyCommand: (e) => (e.ctrlKey || e.metaKey) && e.key === 'b',
 })
