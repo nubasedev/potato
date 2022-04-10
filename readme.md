@@ -1,5 +1,7 @@
 # 📝 React Markdown Editor (Function Component version)
 
+> Useing Function component and Styled-components lib, no extra css file.
+
 # TESTING, DO NOT USE IT.
 
 # INSTALL
