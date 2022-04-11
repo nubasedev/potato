@@ -6,10 +6,9 @@ import {
   MDE_STYLE_PADDING,
 } from '../config'
 import { MdeLanguage } from '../language'
-import { MdeTabProps } from '../typings'
 import { MdeToolbarButton } from './btn'
 import { MdeToolbarBtnGroup } from './group'
-import { MdeToolbarBtnData, MdeToolbarProps } from './typings'
+import { MdeTabProps, MdeToolbarBtnData, MdeToolbarProps } from './typings'
 const StyledMdeHeader = styled.div`
   display: flex;
   flex-wrap: wrap;

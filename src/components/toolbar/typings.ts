@@ -1,5 +1,5 @@
 import { ComponentClass, HtmlHTMLAttributes, ReactNode } from 'react'
-import { MdeTabProps } from '../typings'
+export type MdeTabProps = 'write' | 'preview'
 export interface MdeToolbarProps {
   buttons: MdeToolbarBtnData[][]
   onCommand: (commandName: string) => void

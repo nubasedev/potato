@@ -14,8 +14,8 @@ import { MdeSvgIcon } from './icon/svg-icon'
 import { MdePreview } from './preview'
 import { MdeTextarea } from './textarea'
 import { MdeToolbar } from './toolbar'
-import { MdeToolbarBtnData } from './toolbar/typings'
-import { MdeProps, MdeTabProps } from './typings'
+import { MdeTabProps, MdeToolbarBtnData } from './toolbar/typings'
+import { MdeProps } from './typings'
 const StyledMde = styled.div`
   padding: ${MDE_STYLE_PADDING};
   border: 1px solid ${MDE_STYLE_BORDER_COLOR};

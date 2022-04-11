@@ -3,8 +3,8 @@ import { createRoot } from 'react-dom/client'
 import { hot } from 'react-hot-loader'
 import Showdown from 'showdown'
 import { Mde } from '../src'
+import { MdeTabProps } from '../src/components/toolbar/typings'
 // import { MdeLanguage } from '../src/components/language'
-import { MdeTabProps } from '../src/components/typings'
 // load languages, default en
 // MdeLanguage.setLang('zh-cn')
 const App = hot(module)(() => {

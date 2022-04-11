@@ -1,4 +1,4 @@
-import { MdeLangProps } from '../typings'
+import { MdeLangProps } from './typings'
 interface MdeLangsProps {
   [text: string]: string
 }

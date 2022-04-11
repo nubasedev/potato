@@ -7,8 +7,7 @@ import {
 import { MdeCommandMapProps, MdeGetIcon } from '../commands/command'
 import { MdeGenerateMarkdownPreview } from '../typings/function-types'
 import { MdeComponentSimilarTo } from '../util/type-utils'
-export type MdeTabProps = 'write' | 'preview'
-export type MdeLangProps = 'zh' | 'zh-cn'
+import { MdeTabProps } from './toolbar/typings'
 export interface MdeProps {
   text: string
   setText: (text: string) => void

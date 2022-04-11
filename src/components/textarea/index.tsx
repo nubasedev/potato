@@ -1,9 +1,8 @@
 import {
+  ClipboardEvent,
   DetailedHTMLFactory,
   forwardRef,
   TextareaHTMLAttributes,
-  useEffect,
-  useState,
 } from 'react'
 import styled from 'styled-components'
 import { MdeTextareaProps } from './typings'
@@ -20,16 +19,18 @@ const StyledMdeTextareaContainer = styled.div`
 `
 export const MdeTextarea = forwardRef<HTMLTextAreaElement, MdeTextareaProps>(
   ({ value, setValue, textareaComponent, onKeyCommand, ...props }, ref) => {
-    const [id] = useState<string>((Math.random() + 1).toString(36).substring(7))
     const TextareaComponent = (textareaComponent ||
       'textarea') as DetailedHTMLFactory<
       TextareaHTMLAttributes<HTMLTextAreaElement>,
       HTMLTextAreaElement
     >
-    useEffect(() => {
-      const event = new Event('input')
-      document.querySelector(`[data-id="${id}"]`)?.dispatchEvent(event)
-    }, [id])
+    const handlePast = (e: ClipboardEvent<HTMLTextAreaElement>) => {
+      const files = e?.clipboardData?.files ?? []
+      if (!files.length) {
+        return
+      }
+      e.preventDefault()
+    }
     return (
       <StyledMdeTextareaContainer className='mde__textarea__container'>
         <TextareaComponent
@@ -38,8 +39,8 @@ export const MdeTextarea = forwardRef<HTMLTextAreaElement, MdeTextareaProps>(
           value={value}
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={onKeyCommand}
+          onPaste={handlePast}
           data-testid='text-area'
-          data-id={id}
           {...props}
         />
       </StyledMdeTextareaContainer>

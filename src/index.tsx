@@ -4,6 +4,7 @@ import {
   getDefaultToolbarCommands,
 } from './commands/default-commands/defaults'
 import { Mde } from './components'
+import { MdeTabProps } from './components/toolbar/typings'
 import { selectWord } from './util/markdown-util'
 export { Mde, selectWord, getDefaultCommandMap, getDefaultToolbarCommands }
-export type { MdeCommandProps }
+export type { MdeCommandProps, MdeTabProps }
