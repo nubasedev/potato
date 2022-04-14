@@ -1,6 +1,6 @@
 {
   "name": "fc-mde",
-  "version": "1.0.0-alpha.38",
+  "version": "1.0.0-alpha.41",
   "description": "React Markdown Editor (FC)",
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
