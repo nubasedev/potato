@@ -2,23 +2,21 @@
 
 > Features: Hooks, FC, Styled-components, no extra css file, support custom button commands, support i10n or l18n
 
-# TESTING, DO NOT USE IT.
-
-# SCREENSHOT
+### SCREENSHOT
 
 ![Screenshot](screenshot.png)
 
-# DEMO
+### DEMO
 
 [Codesandbox demo](https://codesandbox.io/s/intelligent-edison-ikf8hf?file=/src/App.tsx)
 
-# INSTALL
+### INSTALL
 
 ```
 npm i fc-mde
 ```
 
-# USAGE
+### USAGE
 
 ```
 import { useRef, useState } from 'react';

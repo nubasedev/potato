@@ -22,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kmvan/react-mde.git"
+    "url": "git+https://github.com/kmvan/fc-mde.git"
   },
   "keywords": [
     "react",
@@ -33,7 +33,7 @@
     "markdown-editor"
   ],
   "author": "Km.Van",
-  "homepage": "https://github.com/kmvan/react-mde.git#readme",
+  "homepage": "https://github.com/kmvan/fc-mde.git#readme",
   "contributors": [
     {
       "name": "Andre Pena"
@@ -41,7 +41,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kmvan/react-mde.git/issues"
+    "url": "https://github.com/kmvan/fc-mde.git/issues"
   },
   "devDependencies": {
     "@types/react": "18.0.5",
