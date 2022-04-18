@@ -8,6 +8,10 @@
 
 ![Screenshot](screenshot.png)
 
+# DEMO
+
+[Codesandbox demo](https://codesandbox.io/s/intelligent-edison-ikf8hf?file=/src/App.tsx)
+
 # INSTALL
 
 ```
@@ -17,11 +21,39 @@ npm i fc-mde
 # USAGE
 
 ```
-import { Mde } from 'fc-mde/lib/cjs'
+import { useRef, useState } from 'react';
+import Showdown from 'showdown';
+import { Mde, MdeTabProps } from 'fc-mde';
 
-// See demo/App.tsx
-
-// More, I am coding...
+export const App = () => {
+  const [value, setValue] = useState('### Hello World');
+  const refTextarea = useRef<HTMLTextAreaElement>(null);
+  const [tab, setTab] = useState<MdeTabProps>('write');
+  const converter = new Showdown.Converter({
+    tables: true,
+    simplifiedAutoLink: true,
+    strikethrough: true,
+    tasklists: true,
+  });
+  const handleValueChange = (value: string) => {
+    setValue(value);
+  };
+  const handleTabChange = (tab: MdeTabProps) => {
+    setTab(tab);
+  };
+  return (
+    <Mde
+      text={value}
+      setText={handleValueChange}
+      onTabChange={handleTabChange}
+      refTextarea={refTextarea}
+      generateMarkdownPreview={async (markdown) => {
+        return converter.makeHtml(markdown);
+      }}
+      selectedTab={tab}
+    />
+  );
+};
 ```
 
 # TODO
