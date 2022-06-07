@@ -12,13 +12,13 @@
 
 ### INSTALL
 
-```
+```shell
 npm i fc-mde
 ```
 
 ### USAGE
 
-```
+```tsx
 import { useRef, useState } from 'react';
 import Showdown from 'showdown';
 import { Mde, MdeTabProps } from 'fc-mde';
