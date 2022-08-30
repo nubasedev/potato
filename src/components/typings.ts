@@ -1,12 +1,12 @@
 import {
   ButtonHTMLAttributes,
+  FC,
   ReactNode,
   RefObject,
-  TextareaHTMLAttributes,
+  TextareaHTMLAttributes
 } from 'react'
 import { MdeCommandMapProps, MdeGetIcon } from '../commands/command'
 import { MdeGenerateMarkdownPreview } from '../typings/function-types'
-import { MdeComponentSimilarTo } from '../util/type-utils'
 import { MdeTabProps } from './toolbar/typings'
 export interface MdeProps {
   text: string
@@ -30,16 +30,10 @@ export interface MdeProps {
    * Custom textarea component. "textareaComponent" can be any React component which
    * props are a subset of the props of an HTMLTextAreaElement
    */
-  textareaComponent?: MdeComponentSimilarTo<
-    HTMLTextAreaElement,
-    TextareaHTMLAttributes<HTMLTextAreaElement>
-  >
+  textareaComponent?: FC
   /**
    * Custom toolbar button component. "toolbarButtonComponent" can be any React component which
    * props are a subset of the props of an HTMLButtonElement
    */
-  toolbarButtonComponent?: MdeComponentSimilarTo<
-    HTMLButtonElement,
-    ButtonHTMLAttributes<HTMLButtonElement>
-  >
+  toolbarButtonComponent?: FC
 }
