@@ -1,17 +1,16 @@
 import {
-  faBold,
-  faCode,
-  faHeader,
-  faImage,
-  faItalic,
-  faLink,
-  faListCheck,
-  faListOl,
-  faListUl,
-  faQuoteLeft,
-  faStrikethrough,
-} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+  Bold,
+  Code2,
+  Heading,
+  Image,
+  Italic,
+  Link,
+  List,
+  ListChecks,
+  ListOrdered,
+  Quote,
+  Strikethrough,
+} from 'lucide-react'
 import { FC, HTMLAttributes } from 'react'
 import styled from 'styled-components'
 import { MDE_STYLE_ICON_SIZE } from '../config'
@@ -28,26 +27,26 @@ const MdeSvgContainer: FC<HTMLAttributes<HTMLDivElement>> = (props) => (
   <StyledMdeSvg className='mde__svg-icon' {...props} />
 )
 export const MdeSvgIcon: FC<MdeIconProviderProps> = ({ icon }) => {
-  const faIcon =
+  const Icon =
     {
-      header: faHeader,
-      bold: faBold,
-      italic: faItalic,
-      strikethrough: faStrikethrough,
-      code: faCode,
-      quote: faQuoteLeft,
-      unorderedList: faListUl,
-      orderedList: faListOl,
-      checkedList: faListCheck,
-      link: faLink,
-      image: faImage,
+      header: Heading,
+      bold: Bold,
+      italic: Italic,
+      strikethrough: Strikethrough,
+      code: Code2,
+      quote: Quote,
+      unorderedList: ListOrdered,
+      orderedList: List,
+      checkedList: ListChecks,
+      link: Link,
+      image: Image,
     }?.[icon] ?? null
-  if (!faIcon) {
+  if (!Icon) {
     return null
   }
   return (
     <MdeSvgContainer>
-      <FontAwesomeIcon icon={faIcon} />
+      <Icon />
     </MdeSvgContainer>
   )
 }

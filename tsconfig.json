@@ -22,7 +22,6 @@
     "skipLibCheck": true,
     "strict": true,
     "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
     "plugins": [
       {
         "transform": "typescript-plugin-styled-components",
