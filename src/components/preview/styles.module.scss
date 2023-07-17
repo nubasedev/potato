@@ -1,0 +1,4 @@
+@use "./styles.content.scss" as content;
+.content {
+  @include content.fc-mde-content;
+}

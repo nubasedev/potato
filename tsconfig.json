@@ -1,13 +1,21 @@
 {
   "compilerOptions": {
-    "sourceMap": true,
-    "outDir": "lib",
-    "jsx": "react-jsx",
-    "isolatedModules": true,
-    "target": "esnext",
-    "module": "esnext",
-    "lib": ["esnext", "dom"],
+    "allowJs": false,
     "allowSyntheticDefaultImports": true,
+    "alwaysStrict": true,
+    "baseUrl": ".",
+    "diagnostics": true,
+    "downlevelIteration": true,
+    "emitBOM": false,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "lib": ["ESNext", "DOM"],
+    "module": "ESNext",
     "moduleResolution": "node",
     "newLine": "LF",
     "noEmit": false,
@@ -16,23 +24,19 @@
     "noImplicitReturns": false,
     "noImplicitThis": false,
     "noUnusedLocals": true,
-    "paths": {},
     "pretty": true,
     "resolveJsonModule": true,
+    // "rootDir": "src",
     "skipLibCheck": true,
+    "sourceMap": true,
     "strict": true,
     "strictNullChecks": true,
-    "plugins": [
-      {
-        "transform": "typescript-plugin-styled-components",
-        "type": "config",
-        "displayName": true,
-        "minify": true,
-        "ssr": true
-      }
-    ],
+    "target": "ES6",
     "incremental": true
   },
-  "include": ["src", "demo"],
-  "exclude": ["node_modules", "lib"]
+  "include": [
+    "src","demo"
+  ],
+  "exclude": ["node_modules"],
+  "includes": ["src/scss.d.ts"]
 }

@@ -4,19 +4,8 @@ import {
   forwardRef,
   TextareaHTMLAttributes,
 } from 'react'
-import styled from 'styled-components'
+import styles from './styles.module.scss'
 import { MdeTextareaProps } from './typings'
-const StyledMdeTextareaContainer = styled.div`
-  position: relative;
-  .mde__textarea {
-    outline: none;
-    width: 100%;
-    border: 0;
-    vertical-align: top;
-    resize: vertical;
-    overflow-y: auto;
-  }
-`
 export const MdeTextarea = forwardRef<HTMLTextAreaElement, MdeTextareaProps>(
   ({ value, setValue, textareaComponent, onKeyCommand, ...props }, ref) => {
     const TextareaComponent = (textareaComponent ||
@@ -32,18 +21,18 @@ export const MdeTextarea = forwardRef<HTMLTextAreaElement, MdeTextareaProps>(
       e.preventDefault()
     }
     return (
-      <StyledMdeTextareaContainer className='mde__textarea__container'>
+      <div className={styles.container} data-fc-mde-textarea-container>
         <TextareaComponent
           ref={ref}
-          className='mde__textarea'
+          className={styles.main}
           value={value}
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={onKeyCommand}
           onPaste={handlePast}
-          data-testid='text-area'
+          data-fc-mde-textarea
           {...props}
         />
-      </StyledMdeTextareaContainer>
+      </div>
     )
   },
 )

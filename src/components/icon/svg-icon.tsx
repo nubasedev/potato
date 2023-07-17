@@ -12,19 +12,10 @@ import {
   Strikethrough,
 } from 'lucide-react'
 import { FC, HTMLAttributes } from 'react'
-import styled from 'styled-components'
-import { MDE_STYLE_ICON_SIZE } from '../config'
+import styles from './styles.module.scss'
 import { MdeIconProviderProps } from './typings'
-const StyledMdeSvg = styled.div`
-  width: ${MDE_STYLE_ICON_SIZE};
-  height: ${MDE_STYLE_ICON_SIZE};
-  svg {
-    width: ${MDE_STYLE_ICON_SIZE};
-    height: ${MDE_STYLE_ICON_SIZE};
-  }
-`
 const MdeSvgContainer: FC<HTMLAttributes<HTMLDivElement>> = (props) => (
-  <StyledMdeSvg className='mde__svg-icon' {...props} />
+  <div className={styles.main} data-fc-mde-svg-icon-container {...props} />
 )
 export const MdeSvgIcon: FC<MdeIconProviderProps> = ({ icon }) => {
   const Icon =
@@ -46,7 +37,7 @@ export const MdeSvgIcon: FC<MdeIconProviderProps> = ({ icon }) => {
   }
   return (
     <MdeSvgContainer>
-      <Icon />
+      <Icon className={styles.svg} data-fc-mde-svg-icon />
     </MdeSvgContainer>
   )
 }

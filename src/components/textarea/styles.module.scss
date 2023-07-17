@@ -1,0 +1,12 @@
+.container {
+  position: relative;
+}
+.main {
+  outline: none;
+  width: 100%;
+  border: 0;
+  vertical-align: top;
+  height: 10rem;
+  resize: vertical;
+  overflow-y: auto;
+}

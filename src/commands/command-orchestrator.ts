@@ -1,7 +1,7 @@
 import { ChangeEvent, KeyboardEvent, RefObject } from 'react'
 import { MdeTextApi, MdeTextState } from '../typings/command-options'
 import { MdeSelection } from '../typings/selection'
-import { insertText } from '../util/insert-text-at-position'
+import { insertText } from '../utils/insert-text-at-position'
 import {
   MdeCommandContext,
   MdeCommandMapProps,

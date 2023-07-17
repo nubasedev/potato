@@ -1,11 +1,9 @@
-const webpack = require('webpack')
-const path = require('path')
-const createStyledComponentsTransformer =
-  require('typescript-plugin-styled-components').default
-const styledComponentsTransformer = createStyledComponentsTransformer()
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-
-module.exports = {
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import path, { dirname } from 'path'
+import { fileURLToPath } from 'url'
+import webpack from 'webpack'
+const __dirname = dirname(fileURLToPath(import.meta.url))
+export default {
   mode: 'development',
   entry: {
     app: path.resolve(__dirname, '../demo/app.tsx'),
@@ -22,7 +20,7 @@ module.exports = {
   },
   devtool: 'source-map',
   resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
+    extensions: ['.ts', '.tsx', '.js', '.scss'],
   },
   plugins: [
     new webpack.ProvidePlugin({
@@ -38,23 +36,33 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts(x?)/,
+        test: /\.(ts|tsx)$/,
+        exclude: /node_modules/,
         use: [
           {
             loader: 'ts-loader',
             options: {
               transpileOnly: true,
-              getCustomTransformers: () => ({
-                before: [styledComponentsTransformer],
-              }),
             },
           },
         ],
-        exclude: /node_modules/,
+      },
+      {
+        test: /\.(scss)$/i,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: {
+                localIdentName: '[path][name]__[local]',
+              },
+            },
+          },
+          'sass-loader',
+        ],
       },
     ],
-  },
-  stats: {
-    colors: true,
   },
 }

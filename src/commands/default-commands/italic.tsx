@@ -1,5 +1,5 @@
 import { MdeLanguage } from '../../components/language'
-import { selectWord } from '../../util/markdown-util'
+import { selectWord } from '../../utils/markdown-util'
 import { MdeCommandProps } from '../command'
 export const italicCommand = (): MdeCommandProps => ({
   buttonProps: {

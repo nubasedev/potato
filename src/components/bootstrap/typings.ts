@@ -3,11 +3,11 @@ import {
   FC,
   ReactNode,
   RefObject,
-  TextareaHTMLAttributes
+  TextareaHTMLAttributes,
 } from 'react'
-import { MdeCommandMapProps, MdeGetIcon } from '../commands/command'
-import { MdeGenerateMarkdownPreview } from '../typings/function-types'
-import { MdeTabProps } from './toolbar/typings'
+import { MdeCommandMapProps, MdeGetIcon } from '../../commands/command'
+import { MdeGenerateMarkdownPreview } from '../../typings/function-types'
+import { MdeTabProps } from '../toolbar/typings'
 export interface MdeProps {
   text: string
   setText: (text: string) => void

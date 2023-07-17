@@ -1,7 +1,0 @@
-export const MDE_STYLE_BG = 'rgba(0, 0, 0, 0.05)'
-export const MDE_STYLE_PADDING = '10px'
-export const MDE_STYLE_TOOLBAR_FG = '#333'
-export const MDE_STYLE_TOOLBAR_BG_HOVER = 'rgba(0, 0, 0, 0.1)'
-export const MDE_STYLE_BORDER_COLOR = 'rgba(0, 0, 0, 0.1)'
-export const MDE_STYLE_BORDER_RADIUS = '5px'
-export const MDE_STYLE_ICON_SIZE = '1em'

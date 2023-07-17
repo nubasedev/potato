@@ -1,35 +1,9 @@
 import { FC, MouseEvent } from 'react'
-import styled from 'styled-components'
-import {
-  MDE_STYLE_BORDER_COLOR,
-  MDE_STYLE_BORDER_RADIUS,
-  MDE_STYLE_PADDING,
-} from '../config'
 import { MdeLanguage } from '../language'
 import { MdeToolbarButton } from './btn'
 import { MdeToolbarBtnGroup } from './group'
+import styles from './styles.module.scss'
 import { MdeTabProps, MdeToolbarBtnData, MdeToolbarProps } from './typings'
-const StyledMdeHeader = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: ${MDE_STYLE_PADDING};
-  padding-bottom: ${MDE_STYLE_PADDING};
-  border-bottom: 1px solid ${MDE_STYLE_BORDER_COLOR};
-`
-const StyledMdeTab = styled.div`
-  display: flex;
-`
-const StyledMdeTabBtn = styled.button`
-  cursor: pointer;
-  border: none;
-  background: none;
-  padding: ${MDE_STYLE_PADDING};
-  border-radius: ${MDE_STYLE_BORDER_RADIUS};
-  :hover,
-  &[data-active] {
-    background: rgba(0, 0, 0, 0.1);
-  }
-`
 export const MdeToolbar: FC<MdeToolbarProps> = ({
   onTabChange,
   buttons,
@@ -52,29 +26,31 @@ export const MdeToolbar: FC<MdeToolbarProps> = ({
     return null
   }
   const writePreviewTabs = (
-    <StyledMdeTab className='mde__tab'>
-      <StyledMdeTabBtn
+    <div className={styles.tab} data-fc-mde-tab>
+      <button
         type='button'
-        className='mde__tab__btn'
+        className={styles.tabButton}
+        data-fc-mde-tab-button
         onClick={(e) => handleTabChange(e, 'write')}
         data-active={tab === 'write' || undefined}
         {...writeButtonProps}
       >
         {MdeLanguage.gettext('Write')}
-      </StyledMdeTabBtn>
-      <StyledMdeTabBtn
+      </button>
+      <button
         type='button'
-        className='mde__tab__btn'
+        className={styles.tabButton}
+        data-fc-mde-tab-button
         onClick={(e) => handleTabChange(e, 'preview')}
         data-active={tab === 'preview' || undefined}
         {...previewButtonProps}
       >
         {MdeLanguage.gettext('Preview')}
-      </StyledMdeTabBtn>
-    </StyledMdeTab>
+      </button>
+    </div>
   )
   return (
-    <StyledMdeHeader className='mde__header'>
+    <div className={styles.header} data-fc-mde-header>
       {disablePreview || writePreviewTabs}
       {buttons.map((commandGroup: MdeToolbarBtnData[], i: number) => (
         <MdeToolbarBtnGroup key={i} hidden={tab === 'preview'}>
@@ -93,6 +69,6 @@ export const MdeToolbar: FC<MdeToolbarProps> = ({
           })}
         </MdeToolbarBtnGroup>
       ))}
-    </StyledMdeHeader>
+    </div>
   )
 }

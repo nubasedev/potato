@@ -1,6 +1,6 @@
 import { MdeLanguage } from '../../components/language'
 import { MdeTextApi, MdeTextState } from '../../typings/command-options'
-import { selectWord } from '../../util/markdown-util'
+import { selectWord } from '../../utils/markdown-util'
 import { MdeCommandProps } from '../command'
 const setHeader = (
   initialState: MdeTextState,

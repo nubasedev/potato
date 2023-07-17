@@ -1,6 +1,6 @@
 # React Markdown Editor (Function Component version)
 
-> Features: Hooks, FC, Styled-components, no extra css file, support custom button commands, support i10n or l18n
+> Features: Hooks, FC, no extra css file, support custom button commands, support i10n or l18n
 
 ### SCREENSHOT
 

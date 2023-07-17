@@ -1,31 +1,17 @@
 import { FC, useRef } from 'react'
-import styled from 'styled-components'
-import { MdeCommandOrchestrator } from '../commands/command-orchestrator'
+import { MdeCommandOrchestrator } from '../../commands/command-orchestrator'
 import {
   getDefaultCommandMap,
   getDefaultToolbarCommands,
-} from '../commands/default-commands/defaults'
-import {
-  MDE_STYLE_BORDER_COLOR,
-  MDE_STYLE_BORDER_RADIUS,
-  MDE_STYLE_PADDING,
-} from './config'
-import { MdeSvgIcon } from './icon/svg-icon'
-import { MdePreview } from './preview'
-import { MdeTextarea } from './textarea'
-import { MdeToolbar } from './toolbar'
-import { MdeTabProps, MdeToolbarBtnData } from './toolbar/typings'
+} from '../../commands/default-commands/defaults'
+import { MdeSvgIcon } from '../icon/svg-icon'
+import { MdePreview } from '../preview'
+import { MdeTextarea } from '../textarea'
+import { MdeToolbar } from '../toolbar'
+import { MdeTabProps, MdeToolbarBtnData } from '../toolbar/typings'
+import './global.scss'
+import styles from './styles.module.scss'
 import { MdeProps } from './typings'
-const StyledMde = styled.div`
-  padding: ${MDE_STYLE_PADDING};
-  border: 1px solid ${MDE_STYLE_BORDER_COLOR};
-  border-radius: ${MDE_STYLE_BORDER_RADIUS};
-`
-const StyledMdeContainer = styled.div`
-  &[data-hidden] {
-    display: none;
-  }
-`
 export const Mde: FC<MdeProps> = ({
   setText,
   refTextarea,
@@ -87,7 +73,7 @@ export const Mde: FC<MdeProps> = ({
     })
     .filter((item) => item)
   return (
-    <StyledMde className='mde'>
+    <div className={styles.main} data-fc-mde>
       <MdeToolbar
         buttons={toolbarButtons}
         onCommand={handleCommand}
@@ -99,8 +85,9 @@ export const Mde: FC<MdeProps> = ({
         writeButtonProps={writeButton}
         previewButtonProps={previewButton}
       />
-      <StyledMdeContainer
-        className='mde__container'
+      <div
+        className={styles.container}
+        data-fc-mde-container
         data-hidden={selectedTab === 'preview' || undefined}
       >
         <MdeTextarea
@@ -113,7 +100,7 @@ export const Mde: FC<MdeProps> = ({
           // onPaste={handlePaste}
           {...textareaProps}
         />
-      </StyledMdeContainer>
+      </div>
       {selectedTab !== 'write' && (
         <MdePreview
           ref={refPreview}
@@ -122,6 +109,6 @@ export const Mde: FC<MdeProps> = ({
           markdown={text}
         />
       )}
-    </StyledMde>
+    </div>
   )
 }

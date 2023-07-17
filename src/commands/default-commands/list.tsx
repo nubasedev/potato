@@ -4,7 +4,7 @@ import {
   getBreaksNeededForEmptyLineAfter,
   getBreaksNeededForEmptyLineBefore,
   selectWord,
-} from '../../util/markdown-util'
+} from '../../utils/markdown-util'
 import { MdeCommandProps } from '../command'
 export type AlterLineFunction = (line: string, index: number) => string
 /**

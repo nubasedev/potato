@@ -1,18 +1,6 @@
-import { css } from 'styled-components'
-export const MdePreviewCss = css`
+@mixin fc-mde-content {
   display: flow-root;
   padding: 1rem;
-  & > * {
-    margin: 1em 0;
-    :first-child {
-      margin-top: 0;
-    }
-    :last-child {
-      margin-bottom: 0;
-    }
-  }
-  a {
-  }
   img {
     display: block;
     max-width: 100%;
@@ -74,8 +62,6 @@ export const MdePreviewCss = css`
   p {
     text-align: justify;
   }
-  code {
-  }
   pre {
     overflow-x: auto;
   }
@@ -98,4 +84,4 @@ export const MdePreviewCss = css`
       background-color: unset;
     }
   }
-`
+}

@@ -3,7 +3,7 @@ import {
   getBreaksNeededForEmptyLineAfter,
   getBreaksNeededForEmptyLineBefore,
   selectWord,
-} from '../../util/markdown-util'
+} from '../../utils/markdown-util'
 import { MdeCommandProps } from '../command'
 export const codeCommand = (): MdeCommandProps => ({
   buttonProps: {

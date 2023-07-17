@@ -1,0 +1,10 @@
+.main {
+  padding: var(--fc-mde-space);
+  border: var(--fc-mde-border);
+  border-radius: var(--fc-mde-border-radius);
+}
+.container {
+  &[data-hidden] {
+    display: none;
+  }
+}

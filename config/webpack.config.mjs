@@ -1,10 +1,9 @@
-const webpack = require('webpack')
-const path = require('path')
-const createStyledComponentsTransformer =
-  require('typescript-plugin-styled-components').default
-const styledComponentsTransformer = createStyledComponentsTransformer()
-const TerserPlugin = require('terser-webpack-plugin')
-module.exports = {
+import path, { dirname } from 'path'
+import TerserPlugin from 'terser-webpack-plugin'
+import { fileURLToPath } from 'url'
+import webpack from 'webpack'
+const __dirname = dirname(fileURLToPath(import.meta.url))
+export default {
   mode: 'production',
   entry: path.resolve(__dirname, '../src/index.tsx'),
   output: {
@@ -15,7 +14,7 @@ module.exports = {
     globalObject: 'this',
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
+    extensions: ['.ts', '.tsx', '.js', '.scss'],
   },
   plugins: [
     new webpack.ProvidePlugin({
@@ -45,25 +44,34 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts(x?)/,
+        test: /\.(ts|tsx)$/,
+        exclude: /node_modules/,
         use: [
           {
             loader: 'ts-loader',
             options: {
               transpileOnly: true,
-              configFile: 'config/tsconfig.umd.json',
-              getCustomTransformers: () => ({
-                before: [styledComponentsTransformer],
-              }),
             },
           },
         ],
-        exclude: /node_modules/,
+      },
+      {
+        test: /\.(scss)$/i,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: {
+                localIdentName: '[path][name]__[local]',
+              },
+            },
+          },
+          'sass-loader',
+        ],
       },
     ],
-  },
-  stats: {
-    colors: true,
   },
   devtool: 'hidden-source-map',
 }

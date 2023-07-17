@@ -1,11 +1,6 @@
 import { forwardRef, ReactNode, useCallback, useEffect, useState } from 'react'
-import styled from 'styled-components'
-import { MdePreviewCss } from './style'
+import styles from './styles.module.scss'
 import { MdePreviewProps } from './typings'
-const StyledMdePreview = styled.div``
-const StyledMdePreviewContent = styled.div`
-  ${MdePreviewCss}
-`
 export const MdePreview = forwardRef<HTMLDivElement, MdePreviewProps>(
   ({ markdown, generateMarkdownPreview, loadingPreview }, ref) => {
     const [loading, setLoading] = useState<boolean>(true)
@@ -24,27 +19,24 @@ export const MdePreview = forwardRef<HTMLDivElement, MdePreviewProps>(
     let content: ReactNode | null = null
     if (loading) {
       content = (
-        <StyledMdePreviewContent className='mde__preview__content'>
+        <div className={styles.content} data-fc-mde-preview-content>
           {loadingPreview}
-        </StyledMdePreviewContent>
+        </div>
       )
     } else {
       content = (
-        <StyledMdePreviewContent
-          className='mde__preview__content'
+        <div
+          className={styles.content}
           ref={ref}
+          data-fc-mde-preview-content
           dangerouslySetInnerHTML={{ __html: preview }}
         />
       )
     }
     return (
-      <StyledMdePreview
-        className='mde__preview'
-        data-loading={loading || undefined}
-        data-testid='mde-preview'
-      >
+      <div data-mde-preview data-loading={loading || undefined}>
         {content}
-      </StyledMdePreview>
+      </div>
     )
   },
 )
