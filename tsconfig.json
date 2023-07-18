@@ -32,7 +32,8 @@
     "strict": true,
     "strictNullChecks": true,
     "target": "ES6",
-    "incremental": true
+    "incremental": true,
+    "plugins": [{"name": "typescript-plugin-css-modules"}],
   },
   "include": [
     "src","demo"

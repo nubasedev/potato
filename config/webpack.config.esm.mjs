@@ -1,17 +1,23 @@
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import path, { dirname } from 'path'
-import TerserPlugin from 'terser-webpack-plugin'
 import { fileURLToPath } from 'url'
 import webpack from 'webpack'
 const __dirname = dirname(fileURLToPath(import.meta.url))
+/**
+ * @type {webpack.Configuration}
+ */
 export default {
   mode: 'production',
+  experiments: {
+    outputModule: true,
+  },
   entry: path.resolve(__dirname, '../src/index.tsx'),
   output: {
-    path: path.resolve(__dirname, '../lib/umd'),
+    path: path.resolve(__dirname, '../lib/esm'),
     filename: 'index.js',
-    library: 'mde',
-    libraryTarget: 'umd',
-    globalObject: 'this',
+    library: {
+      type: 'module',
+    }
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.scss'],
@@ -20,27 +26,32 @@ export default {
     new webpack.ProvidePlugin({
       React: 'react',
     }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+      ignoreOrder: false, // Enable to remove warnings about conflicting order
+    }),
   ],
-  optimization: {
-    minimizer: [
-      new TerserPlugin({
-        parallel: true,
-        extractComments: false,
-        terserOptions: {
-          toplevel: true,
-          mangle: true,
-          compress: true,
-          ecma: 2016,
-          module: true,
-          sourceMap: false,
-          format: {
-            ascii_only: true,
-            comments: false,
-          },
-        },
-      }),
-    ],
-  },
+  // optimization: {
+  //   minimizer: [
+  //     new TerserPlugin({
+  //       parallel: true,
+  //       extractComments: false,
+  //       terserOptions: {
+  //         toplevel: true,
+  //         mangle: true,
+  //         compress: true,
+  //         ecma: 2016,
+  //         module: true,
+  //         sourceMap: false,
+  //         format: {
+  //           ascii_only: true,
+  //           comments: false,
+  //         },
+  //       },
+  //     }),
+  //   ],
+  // },
   module: {
     rules: [
       {
@@ -54,6 +65,10 @@ export default {
             },
           },
         ],
+      },
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: /\.(scss)$/i,

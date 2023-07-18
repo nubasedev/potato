@@ -3,7 +3,8 @@
   "compilerOptions": {
     "module": "ESNext",
     "outDir": "../lib/esm",
-    "sourceMap": false
+    "declarationDir": "../lib/esm",
+    "sourceMap": false,
   },
   "exclude": ["../demo"]
 }

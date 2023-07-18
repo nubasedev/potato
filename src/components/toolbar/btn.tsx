@@ -1,6 +1,6 @@
 import { createElement, FC } from 'react'
-import { MdeToolbarBtnProps } from './typings'
 import styles from './styles.module.scss'
+import { MdeToolbarBtnProps } from './typings'
 const defaultButtonProps = {
   tabIndex: -1,
 }
@@ -19,7 +19,7 @@ export const MdeToolbarButton: FC<MdeToolbarBtnProps> = ({
       {createElement(
         finalButtonComponent,
         {
-          className: 'mde__toolbar__group__item__btn',
+          'data-fc-mde-toolbar-button-item': true,
           'data-name': name,
           ...finalButtonProps,
           ...{

@@ -1,12 +1,11 @@
 import fs from 'fs'
-import webpack from 'webpack'
-import { fileURLToPath } from 'url'
 import path, { dirname } from 'path'
+import { fileURLToPath } from 'url'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const deleteDirRecursive = (path) => {
   if (fs.existsSync(path)) {
     fs.readdirSync(path).forEach((file) => {
-      const curPath = Path.join(path, file)
+      const curPath = path.join(path, file)
       if (fs.lstatSync(curPath).isDirectory()) {
         deleteDirRecursive(curPath)
       } else {
