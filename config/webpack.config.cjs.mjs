@@ -1,4 +1,6 @@
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import path, { dirname } from 'path'
+import TerserPlugin from 'terser-webpack-plugin'
 import { fileURLToPath } from 'url'
 import webpack from 'webpack'
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -7,7 +9,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
  */
 export default {
   mode: 'production',
-  entry: path.resolve(__dirname, '../src/index.tsx'),
+  entry: path.resolve(__dirname, '../src/index.ts'),
   output: {
     path: path.resolve(__dirname, '../lib/cjs'),
     filename: 'index.js',
@@ -26,26 +28,26 @@ export default {
       React: 'react',
     }),
   ],
-  // optimization: {
-  //   minimizer: [
-  //     new TerserPlugin({
-  //       parallel: true,
-  //       extractComments: false,
-  //       terserOptions: {
-  //         toplevel: true,
-  //         mangle: true,
-  //         compress: true,
-  //         ecma: 2016,
-  //         module: true,
-  //         sourceMap: false,
-  //         format: {
-  //           ascii_only: true,
-  //           comments: false,
-  //         },
-  //       },
-  //     }),
-  //   ],
-  // },
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        parallel: true,
+        extractComments: false,
+        terserOptions: {
+          toplevel: true,
+          mangle: true,
+          compress: true,
+          ecma: 2016,
+          module: true,
+          sourceMap: false,
+          format: {
+            ascii_only: true,
+            comments: false,
+          },
+        },
+      }),
+    ],
+  },
   module: {
     rules: [
       {
@@ -59,6 +61,10 @@ export default {
             },
           },
         ],
+      },
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: /\.(scss)$/i,
