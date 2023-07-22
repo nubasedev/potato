@@ -1,9 +1,10 @@
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import path, { dirname } from 'path'
-import TerserPlugin from 'terser-webpack-plugin'
-import { fileURLToPath } from 'url'
-import webpack from 'webpack'
-const __dirname = dirname(fileURLToPath(import.meta.url))
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import path, { dirname } from 'path';
+import TerserPlugin from 'terser-webpack-plugin';
+import { fileURLToPath } from 'url';
+import webpack from 'webpack';
+const __dirname = dirname(fileURLToPath(import.meta.url));
 /**
  * @type {webpack.Configuration}
  */
@@ -14,23 +15,38 @@ export default {
   },
   entry: path.resolve(__dirname, '../src/index.ts'),
   output: {
+    module: true,
     path: path.resolve(__dirname, '../lib/esm'),
     filename: 'index.js',
     library: {
-      type: "module"
-    }
+      type: 'module',
+    },
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.scss'],
+    alias: {
+      '@src': path.resolve(__dirname, '../src'), // Create an alias for the 'src' directory
+    },
   },
   plugins: [
     new webpack.ProvidePlugin({
       React: 'react',
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].css',
+      filename: 'styles.css',
       chunkFilename: '[id].css',
-      ignoreOrder: false, // Enable to remove warnings about conflicting order
+      ignoreOrder: false,
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, '../src/**/*.scss'),
+          to: ({ context, absoluteFilename }) => {
+            const relativePath = path.relative(context, absoluteFilename);
+            return `styles/${relativePath}`; // Copy scss files to the output directory preserving the directory structure
+          },
+        },
+      ],
     }),
   ],
   optimization: {
@@ -74,7 +90,7 @@ export default {
       {
         test: /\.(scss)$/i,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
@@ -90,4 +106,4 @@ export default {
     ],
   },
   devtool: 'hidden-source-map',
-}
+};

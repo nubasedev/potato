@@ -1,9 +1,10 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "../lib/esm",
     "module": "ESNext",
     "outDir": "../lib/esm",
-    "declarationDir": "../lib/esm",
     "sourceMap": false,
   },
   "exclude": ["../demo"]

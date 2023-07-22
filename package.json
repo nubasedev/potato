@@ -1,12 +1,23 @@
 {
   "name": "fc-mde",
-  "version": "1.0.0-alpha.49",
+  "version": "1.0.0-alpha.50",
   "description": "React Markdown Editor (FC)",
   "type": "module",
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
   "umd:main": "lib/umd/index.js",
   "types": "lib/types/index.d.js",
+  "scripts": {
+    "dev": "webpack-dev-server --config ./config/webpack.config.demo.dev.mjs",
+    "lang": "node ./tools/lang-builder.mjs",
+    "build": "npm run build:cjs && npm run build:esm && npm run build:umd && npm run build:types",
+    "build:cjs": "node cleanup.mjs cjs && tsc -p config/tsconfig.cjs.json && node tools/copyScss.mjs cjs",
+    "build:esm": "node cleanup.mjs cjs && tsc -p config/tsconfig.esm.json && node tools/copyScss.mjs esm",
+    "build:umd": "node cleanup.mjs umd && webpack --config config/webpack.config.umd.mjs",
+    "build:types": "node cleanup.mjs types && tsc -p config/tsconfig.typings.json",
+    "clean": "node cleanup.mjs",
+    "package": "npm run build && npm pack"
+  },
   "files": [
     "lib"
   ],
@@ -44,6 +55,7 @@
     "@types/showdown": "^2.0.1",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
+    "copy-webpack-plugin": "^11.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.8.1",
     "deep-sort-object": "^1.0.2",
@@ -87,16 +99,5 @@
   "resolutions": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
-  },
-  "scripts": {
-    "dev": "webpack-dev-server --config ./config/webpack.config.demo.dev.mjs",
-    "lang": "node ./tools/lang-builder.mjs",
-    "build": "npm run build:cjs && npm run build:esm && npm run build:umd && npm run build:types",
-    "build:cjs": "node cleanup.mjs cjs && webpack --config config/webpack.config.cjs.mjs",
-    "build:esm": "node cleanup.mjs cjs && webpack --config config/webpack.config.esm.mjs",
-    "build:umd": "node cleanup.mjs umd && webpack --config config/webpack.config.umd.mjs",
-    "build:types": "node cleanup.mjs types && tsc -p config/tsconfig.typings.json",
-    "clean": "node cleanup.mjs",
-    "package": "npm run build && npm pack"
   }
 }

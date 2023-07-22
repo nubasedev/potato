@@ -1,8 +1,8 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "module": "commonjs",
     "declaration": false,
+    "module": "commonjs",
     "sourceMap": false
   },
   "exclude": ["../demo"]
