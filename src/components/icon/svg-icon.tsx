@@ -15,7 +15,7 @@ import { FC, HTMLAttributes } from 'react'
 import styles from './styles.module.scss'
 import { MdeIconProviderProps } from './typings'
 const MdeSvgContainer: FC<HTMLAttributes<HTMLDivElement>> = (props) => (
-  <div className={styles.main} data-fc-mde-svg-icon-container {...props} />
+  <div data-fc-mde-svg-icon-container {...props} />
 )
 export const MdeSvgIcon: FC<MdeIconProviderProps> = ({ icon }) => {
   const Icon =
@@ -37,7 +37,7 @@ export const MdeSvgIcon: FC<MdeIconProviderProps> = ({ icon }) => {
   }
   return (
     <MdeSvgContainer>
-      <Icon className={styles.svg} data-fc-mde-svg-icon />
+      <Icon className={styles.main} data-fc-mde-svg-icon />
     </MdeSvgContainer>
   )
 }

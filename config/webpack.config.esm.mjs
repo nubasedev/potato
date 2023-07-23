@@ -21,6 +21,7 @@ export default {
     library: {
       type: 'module',
     },
+    clean: true,
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.scss'],
@@ -79,6 +80,7 @@ export default {
             loader: 'ts-loader',
             options: {
               transpileOnly: true,
+              configFile: './tsconfig.esm.json',
             },
           },
         ],
