@@ -4,6 +4,7 @@
     "allowSyntheticDefaultImports": true,
     "alwaysStrict": true,
     "baseUrl": ".",
+    "declaration":true,
     "diagnostics": true,
     "downlevelIteration": true,
     "emitBOM": false,
@@ -18,11 +19,11 @@
     "module": "ESNext",
     "moduleResolution": "node",
     "newLine": "LF",
-    "noEmit": false,
+    "noEmit": true,
     "noEmitOnError": true,
-    "noImplicitAny": false,
-    "noImplicitReturns": false,
-    "noImplicitThis": false,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
     "noUnusedLocals": true,
     "pretty": true,
     "resolveJsonModule": true,
@@ -31,13 +32,13 @@
     "sourceMap": true,
     "strict": true,
     "strictNullChecks": true,
-    "target": "ES6",
-    "incremental": true,
+    "target": "ESNext",
+    "incremental": false,
     "plugins": [{"name": "typescript-plugin-css-modules"}],
   },
   "include": [
-    "src","demo"
+    "src/**/*"
   ],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "lib"],
   "includes": ["src/scss.d.ts"]
 }

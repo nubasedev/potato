@@ -2,9 +2,9 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "declaration": true,
-    "emitDeclarationOnly": true,
-    "outDir": "../lib/types",
-    "sourceMap": false
+    "declarationDir": "../lib/types",
+    "sourceMap": true,
+    "noEmit": false
   },
   "exclude": ["../demo"]
 }

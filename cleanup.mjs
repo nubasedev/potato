@@ -15,12 +15,4 @@ const deleteDirRecursive = (path) => {
     fs.rmdirSync(path)
   }
 }
-const dir = process.argv.slice(2)[0]
-if (dir) {
-  deleteDirRecursive(path.join(__dirname, '../lib', dir))
-} else {
-  deleteDirRecursive(path.join(__dirname, '../lib/cjs'))
-  deleteDirRecursive(path.join(__dirname, '../lib/esm'))
-  deleteDirRecursive(path.join(__dirname, '../lib/umd'))
-  deleteDirRecursive(path.join(__dirname, '../lib/types'))
-}
+deleteDirRecursive(path.join(__dirname, '../lib'))
