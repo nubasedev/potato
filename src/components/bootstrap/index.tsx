@@ -36,7 +36,7 @@ export const Mde: FC<MdeProps> = ({
   const commandOrchestrator = new MdeCommandOrchestrator({
     setText,
     customCommands: commands,
-    refTextarea,
+    refTextarea: refTextarea,
     // paste: paste? { ...pasteOptionDefaults, ...paste } : undefined,
   })
   // const handlePaste = async (e: ClipboardEvent<HTMLTextAreaElement>) => {

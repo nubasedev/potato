@@ -14,7 +14,7 @@ export interface MdeProps {
   selectedTab: MdeTabProps
   onTabChange: (tab: MdeTabProps) => void
   generateMarkdownPreview: MdeGenerateMarkdownPreview
-  refTextarea: RefObject<HTMLTextAreaElement>
+  refTextarea: RefObject<HTMLTextAreaElement | null>
   toolbarCommands?: string[][]
   commands?: MdeCommandMapProps
   getIcon?: MdeGetIcon

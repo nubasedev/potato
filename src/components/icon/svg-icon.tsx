@@ -11,10 +11,10 @@ import {
   Quote,
   Strikethrough,
 } from 'lucide-react'
-import { FC, HTMLAttributes } from 'react'
+import { FC, type HTMLProps } from 'react'
 import styles from './styles.module.scss'
 import { MdeIconProviderProps } from './typings'
-const MdeSvgContainer: FC<HTMLAttributes<HTMLDivElement>> = (props) => (
+const MdeSvgContainer: FC<HTMLProps<HTMLDivElement>> = (props) => (
   <div data-fc-mde-svg-icon-container {...props} />
 )
 export const MdeSvgIcon: FC<MdeIconProviderProps> = ({ icon }) => {

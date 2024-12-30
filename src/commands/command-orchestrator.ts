@@ -15,8 +15,8 @@ import {
   getDefaultSaveImageCommandName,
 } from './default-commands/defaults'
 export class MdeTextAreaTextApi implements MdeTextApi {
-  private readonly refTextarea: RefObject<HTMLTextAreaElement>
-  constructor(refTextarea: RefObject<HTMLTextAreaElement>) {
+  private readonly refTextarea: RefObject<HTMLTextAreaElement | null>
+  constructor(refTextarea: RefObject<HTMLTextAreaElement | null>) {
     this.refTextarea = refTextarea
   }
   public replaceSelection = (text: string): MdeTextState => {
@@ -54,12 +54,12 @@ export const getStateFromTextArea = (
 interface MdeCommandOrchestratorProps {
   setText: (text: string) => void
   customCommands: MdeCommandMapProps
-  refTextarea: RefObject<HTMLTextAreaElement>
+  refTextarea: RefObject<HTMLTextAreaElement | null>
   pasteOptions?: MdePasteOptions
 }
 export class MdeCommandOrchestrator {
   private readonly setText: (text: string) => void
-  private readonly refTextarea: RefObject<HTMLTextAreaElement>
+  private readonly refTextarea: RefObject<HTMLTextAreaElement | null>
   private readonly textApi: MdeTextApi
   private readonly commandMap: MdeCommandMapProps
   /**

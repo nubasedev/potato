@@ -4,7 +4,7 @@
     "allowSyntheticDefaultImports": true,
     "alwaysStrict": true,
     "baseUrl": ".",
-    "declaration":true,
+    "declaration": true,
     "diagnostics": true,
     "downlevelIteration": true,
     "emitBOM": false,
@@ -15,7 +15,10 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "jsxImportSource": "react",
-    "lib": ["ESNext", "DOM"],
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
     "module": "ESNext",
     "moduleResolution": "node",
     "newLine": "LF",
@@ -34,11 +37,20 @@
     "strictNullChecks": true,
     "target": "ESNext",
     "incremental": false,
-    "plugins": [{"name": "typescript-plugin-css-modules"}],
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      }
+    ],
   },
   "include": [
     "src/**/*"
   ],
-  "exclude": ["node_modules", "lib"],
-  "includes": ["src/scss.d.ts"]
+  "exclude": [
+    "node_modules",
+    "lib"
+  ],
+  "includes": [
+    "src/scss.d.ts"
+  ]
 }
