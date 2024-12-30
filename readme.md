@@ -8,7 +8,7 @@
 
 ### DEMO
 
-[Codesandbox demo](https://codesandbox.io/s/intelligent-edison-ikf8hf?file=/src/App.tsx)
+[Codesandbox demo](https://codesandbox.io/p/sandbox/z46z8v)
 
 ### INSTALL
 
@@ -19,26 +19,26 @@ npm i fc-mde
 ### USAGE
 
 ```tsx
-import { useRef, useState } from 'react';
-import Showdown from 'showdown';
-import { Mde, MdeTabProps } from 'fc-mde';
+import { useRef, useState } from 'react'
+import Showdown from 'showdown'
+import { Mde, MdeTabProps } from 'fc-mde'
 
 export const App = () => {
-  const [value, setValue] = useState('### Hello World');
-  const refTextarea = useRef<HTMLTextAreaElement>(null);
-  const [tab, setTab] = useState<MdeTabProps>('write');
+  const [value, setValue] = useState('### Hello World')
+  const refTextarea = useRef<HTMLTextAreaElement>(null)
+  const [tab, setTab] = useState<MdeTabProps>('write')
   const converter = new Showdown.Converter({
     tables: true,
     simplifiedAutoLink: true,
     strikethrough: true,
     tasklists: true,
-  });
+  })
   const handleValueChange = (value: string) => {
-    setValue(value);
-  };
+    setValue(value)
+  }
   const handleTabChange = (tab: MdeTabProps) => {
-    setTab(tab);
-  };
+    setTab(tab)
+  }
   return (
     <Mde
       text={value}
@@ -46,12 +46,12 @@ export const App = () => {
       onTabChange={handleTabChange}
       refTextarea={refTextarea}
       generateMarkdownPreview={async (markdown) => {
-        return converter.makeHtml(markdown);
+        return converter.makeHtml(markdown)
       }}
       selectedTab={tab}
     />
-  );
-};
+  )
+}
 ```
 
 # TODO
