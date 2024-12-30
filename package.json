@@ -1,9 +1,9 @@
 {
   "name": "fc-mde",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React Markdown Editor (FC)",
   "type": "module",
-  "main": "dist/index.umd.js",
+  "main": "dist/index.cjs",
   "module": "dist/index.es.js",
   "types": "dist/types/index.d.ts",
   "scripts": {

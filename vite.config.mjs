@@ -19,8 +19,11 @@ export default defineConfig({
     lib: {
       entry: 'src/index.ts',
       name: 'fc-mde',
-      fileName: (format) => `index.${format}.js`,
-      formats: ['es', 'umd'],
+      fileName: (format) =>
+        ({
+          cjs: `index.cjs`,
+        })[format] ?? `index.${format}.js`,
+      formats: ['es', 'cjs'],
     },
     rollupOptions: {
       external: ['react', 'react-dom'],
