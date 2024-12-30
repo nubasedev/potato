@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "React Markdown Editor (FC)",
   "type": "module",
-  "main": "lib/index.umd.js",
-  "module": "lib/index.es.js",
-  "types": "lib/types/index.d.ts",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.es.js",
+  "types": "dist/types/index.d.ts",
   "scripts": {
     "dev": "vite --config ./demo.vite.config.mjs",
     "lang": "node ./tools/lang-builder.mjs",
@@ -14,7 +14,7 @@
     "package": "npm run build && npm pack"
   },
   "files": [
-    "lib"
+    "dist"
   ],
   "repository": {
     "type": "git",
