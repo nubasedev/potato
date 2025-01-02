@@ -21,7 +21,7 @@ export const Mde: FC<MdeProps> = ({
   readOnly = false,
   selectedTab = 'write',
   disablePreview = false,
-  // paste,
+  paste,
   onTabChange,
   loadingPreview,
   text,
@@ -37,14 +37,14 @@ export const Mde: FC<MdeProps> = ({
     setText,
     customCommands: commands,
     refTextarea: refTextarea,
-    // paste: paste? { ...pasteOptionDefaults, ...paste } : undefined,
+    pasteOptions: paste,
   })
-  // const handlePaste = async (e: ClipboardEvent<HTMLTextAreaElement>) => {
-  //   if (!paste?.saveImage) {
-  //     return
-  //   }
-  //   await commandOrchestrator.executePasteCommand(e)
-  // }
+  const handlePaste = async (e: globalThis.ClipboardEvent) => {
+    if (!paste?.saveImage) {
+      return
+    }
+    await commandOrchestrator.executePasteCommand(e)
+  }
   // const handleDrop = async (e: DragEvent<HTMLTextAreaElement>) => {
   //   if (!paste?.saveImage) {
   //     return
@@ -97,7 +97,7 @@ export const Mde: FC<MdeProps> = ({
           textareaComponent={textareaComponent}
           onKeyCommand={commandOrchestrator.handleKeyCommand}
           // onDrop={handleDrop}
-          // onPaste={handlePaste}
+          onPaste={handlePaste}
           {...textareaProps}
         />
       </div>

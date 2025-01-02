@@ -39,4 +39,7 @@ const App = () => {
   )
 }
 const c = document.getElementById('root')
-c && createRoot(c).render(<App />)
+if (!c) {
+  throw new Error('root not found')
+}
+createRoot(c).render(<App />)

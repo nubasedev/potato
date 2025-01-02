@@ -131,31 +131,31 @@ export class MdeCommandOrchestrator {
   /**
    * Executes the paste command
    */
-  // public executePasteCommand = async (event: ClipboardEvent): Promise<void> => {
-  //   if (this.pasteOptions) {
-  //     return this.executeCommand(
-  //       this.pasteOptions.command || getDefaultSaveImageCommandName(),
-  //       {
-  //         pasteOptions: this.pasteOptions,
-  //         event: event,
-  //       } as MdePasteCommandContext,
-  //     )
-  //   }
-  // }
+  public executePasteCommand = async (event: ClipboardEvent): Promise<void> => {
+    if (this.pasteOptions) {
+      return this.executeCommand(
+        this.pasteOptions.command || getDefaultSaveImageCommandName(),
+        {
+          pasteOptions: this.pasteOptions,
+          event: event,
+        } as MdePasteCommandContext,
+      )
+    }
+  }
   /**
    * Executes the drop command
    */
-  // public executeDropCommand = async (event: DragEvent): Promise<void> => {
-  //   if (this.pasteOptions) {
-  //     return this.executeCommand(
-  //       this.pasteOptions.command || getDefaultSaveImageCommandName(),
-  //       {
-  //         pasteOptions: this.pasteOptions,
-  //         event: event,
-  //       } as MdePasteCommandContext,
-  //     )
-  //   }
-  // }
+  public executeDropCommand = async (event: DragEvent): Promise<void> => {
+    if (this.pasteOptions) {
+      return this.executeCommand(
+        this.pasteOptions.command || getDefaultSaveImageCommandName(),
+        {
+          pasteOptions: this.pasteOptions,
+          event: event,
+        } as MdePasteCommandContext,
+      )
+    }
+  }
   /**
    * Executes the "select image" command
    */

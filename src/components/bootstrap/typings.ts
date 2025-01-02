@@ -5,7 +5,11 @@ import {
   RefObject,
   TextareaHTMLAttributes,
 } from 'react'
-import { MdeCommandMapProps, MdeGetIcon } from '../../commands/command'
+import {
+  MdeCommandMapProps,
+  MdeGetIcon,
+  type MdePasteOptions,
+} from '../../commands/command'
 import { MdeGenerateMarkdownPreview } from '../../typings/function-types'
 import { MdeTabProps } from '../toolbar/typings'
 export interface MdeProps {
@@ -25,7 +29,7 @@ export interface MdeProps {
   previewButton?: ButtonHTMLAttributes<HTMLButtonElement>
   commandButtons?: ButtonHTMLAttributes<HTMLButtonElement>
   textareaProps?: TextareaHTMLAttributes<HTMLTextAreaElement>
-  // paste?: MdePasteOptions
+  paste?: MdePasteOptions
   /**
    * Custom textarea component. "textareaComponent" can be any React component which
    * props are a subset of the props of an HTMLTextAreaElement

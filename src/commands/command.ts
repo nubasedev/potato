@@ -1,4 +1,9 @@
-import { ChangeEvent, ComponentClass, ReactNode } from 'react'
+import {
+  ChangeEvent,
+  ComponentClass,
+  ReactNode,
+  type ButtonHTMLAttributes,
+} from 'react'
 import { MdeTextApi, MdeTextState } from '../typings/command-options'
 import { MdeHandleKeyCommand } from '../typings/function-types'
 export type MdeGetIcon = (iconName: string) => ReactNode
@@ -11,7 +16,7 @@ export interface MdeExecuteOptions {
 export interface MdeCommandProps {
   buttonComponentClass?: ComponentClass | string
   icon?: (getIconFromProvider: MdeGetIcon) => ReactNode
-  buttonProps?: any
+  buttonProps?: ButtonHTMLAttributes<HTMLButtonElement>
   execute: (options: MdeExecuteOptions) => void | Promise<void>
   /**
    * On every key-down, "handleKeyCommand", if defined, will be executed for every command.
