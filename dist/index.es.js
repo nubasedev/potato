@@ -1,5 +1,5 @@
-import He, { forwardRef as Q, createElement as F, useState as le, useCallback as de, useEffect as Ve, useRef as Ge } from "react";
-const Ue = { zh: "预览", "zh-CN": "预览" }, Je = { zh: "编辑", "zh-CN": "编辑" }, Xe = {
+import Ve, { forwardRef as ee, createElement as D, useState as ue, useCallback as me, useEffect as Ge, useRef as Ue } from "react";
+const Je = { zh: "预览", "zh-CN": "预览" }, Xe = { zh: "编辑", "zh-CN": "编辑" }, Fe = {
   "Add a link": { zh: "附加链接", "zh-CN": "附加链接" },
   "Add bold text": { zh: "附加粗体", "zh-CN": "附加粗体" },
   "Add checked list": { zh: "附加任务列表", "zh-CN": "附加任务列表" },
@@ -11,10 +11,10 @@ const Ue = { zh: "预览", "zh-CN": "预览" }, Je = { zh: "编辑", "zh-CN": "�
   "Add unordered list": { zh: "附加无序列表", "zh-CN": "附加无序列表" },
   "Insert a quote": { zh: "附加引用", "zh-CN": "附加引用" },
   "Insert code": { zh: "附加代码", "zh-CN": "附加代码" },
-  Preview: Ue,
-  Write: Je
+  Preview: Je,
+  Write: Xe
 };
-class Fe {
+class Qe {
   langId = "";
   setLangId = (t) => {
     this.langId = t;
@@ -23,11 +23,11 @@ class Fe {
     if (!this.langId)
       return t;
     const s = `${r || ""}${t}`;
-    return Xe?.[s]?.[this.langId] ?? t;
+    return Fe?.[s]?.[this.langId] ?? t;
   };
 }
-const h = new Fe();
-function Qe(n, t) {
+const h = new Qe();
+function Ze(n, t) {
   if (!n)
     throw Error("Argument 'text' should be truthy");
   const r = (a) => a === " " || a.charCodeAt(0) === 10;
@@ -45,9 +45,9 @@ function Qe(n, t) {
   return { start: s, end: o };
 }
 function j({ text: n, selection: t }) {
-  return n && n.length && t.start === t.end ? Qe(n, t.start) : t;
+  return n && n.length && t.start === t.end ? Ze(n, t.start) : t;
 }
-function ue(n = "", t) {
+function he(n = "", t) {
   if (t === 0)
     return 0;
   let r = 2, s = !0;
@@ -63,7 +63,7 @@ function ue(n = "", t) {
     }
   return s ? 0 : r;
 }
-function fe(n = "", t) {
+function ge(n = "", t) {
   if (t === n.length - 1)
     return 0;
   let r = 2, s = !0;
@@ -80,7 +80,7 @@ function fe(n = "", t) {
     }
   return s ? 0 : r;
 }
-const Ze = () => ({
+const De = () => ({
   buttonProps: {
     "aria-label": h.gettext("Add bold text"),
     title: h.gettext("Add bold text")
@@ -98,7 +98,7 @@ const Ze = () => ({
     );
   },
   handleKeyCommand: (n) => (n.ctrlKey || n.metaKey) && n.key === "b"
-}), De = () => ({
+}), et = () => ({
   buttonProps: {
     "aria-label": h.gettext("Insert code"),
     title: h.gettext("Insert code")
@@ -111,36 +111,36 @@ const Ze = () => ({
     if (o.selectedText.indexOf(`
 `) === -1) {
       t.replaceSelection(`\`${o.selectedText}\``);
-      const b = o.selection.start + 1, C = b + o.selectedText.length;
+      const x = o.selection.start + 1, E = x + o.selectedText.length;
       t.setSelectionRange({
-        start: b,
-        end: C
+        start: x,
+        end: E
       });
       return;
     }
-    const a = ue(
+    const a = he(
       o.text,
       o.selection.start
     ), d = Array(a + 1).join(`
-`), f = fe(
+`), f = ge(
       o.text,
       o.selection.end
-    ), v = Array(f + 1).join(`
+    ), p = Array(f + 1).join(`
 `);
     t.replaceSelection(
       `${d}\`\`\`
 ${o.selectedText}
-\`\`\`${v}`
+\`\`\`${p}`
     );
-    const m = o.selection.start + a + 4, p = m + o.selectedText.length;
+    const m = o.selection.start + a + 4, v = m + o.selectedText.length;
     r(
       t.setSelectionRange({
         start: m,
-        end: p
+        end: v
       }).text
     );
   }
-}), et = (n, t, r) => {
+}), tt = (n, t, r) => {
   const s = j({
     text: n.text,
     selection: n.selection
@@ -149,15 +149,15 @@ ${o.selectedText}
     start: a.selection.end - o.selectedText.length,
     end: a.selection.end
   });
-}, tt = () => ({
+}, nt = () => ({
   buttonProps: {
     "aria-label": h.gettext("Add header"),
     title: h.gettext("Add header")
   },
   execute: ({ initialState: n, textApi: t, setText: r }) => {
-    r(et(n, t, "### ").text);
+    r(tt(n, t, "### ").text);
   }
-}), nt = () => ({
+}), ot = () => ({
   buttonProps: {
     "aria-label": h.gettext("Add image"),
     title: h.gettext("Add image")
@@ -176,7 +176,7 @@ ${o.selectedText}
       }).text
     );
   }
-}), ot = () => ({
+}), rt = () => ({
   buttonProps: {
     "aria-label": h.gettext("Add italic text"),
     title: h.gettext("Add italic text")
@@ -194,7 +194,7 @@ ${o.selectedText}
     );
   },
   handleKeyCommand: (n) => (n.ctrlKey || n.metaKey) && n.key === "i"
-}), rt = () => ({
+}), at = () => ({
   buttonProps: {
     "aria-label": h.gettext("Add a link"),
     title: h.gettext("Add a link")
@@ -213,7 +213,7 @@ ${o.selectedText}
   },
   handleKeyCommand: (n) => (n.ctrlKey || n.metaKey) && n.key === "k"
 });
-function at(n, t) {
+function st(n, t) {
   const r = n.split(/\n/);
   let s = 0;
   return { modifiedText: r.map((a, d) => {
@@ -227,55 +227,55 @@ function at(n, t) {
   }).join(`
 `), insertionLength: s };
 }
-const me = (n, t, r) => {
+const xe = (n, t, r) => {
   const s = j({
     text: n.text,
     selection: n.selection
-  }), o = t.setSelectionRange(s), a = ue(
+  }), o = t.setSelectionRange(s), a = he(
     o.text,
     o.selection.start
   ), d = Array(a + 1).join(`
-`), f = fe(
+`), f = ge(
     o.text,
     o.selection.end
-  ), v = Array(f + 1).join(`
-`), m = at(o.selectedText, r);
+  ), p = Array(f + 1).join(`
+`), m = st(o.selectedText, r);
   t.replaceSelection(
-    `${d}${m.modifiedText}${v}`
+    `${d}${m.modifiedText}${p}`
   );
-  const p = o.selectedText.indexOf(`
-`) === -1 ? m.insertionLength : 0, b = o.selection.start + a + p, C = b + m.modifiedText.length - p;
+  const v = o.selectedText.indexOf(`
+`) === -1 ? m.insertionLength : 0, x = o.selection.start + a + v, E = x + m.modifiedText.length - v;
   return t.setSelectionRange({
-    start: b,
-    end: C
+    start: x,
+    end: E
   });
-}, st = () => ({
+}, ct = () => ({
   buttonProps: {
     "aria-label": h.gettext("Add unordered list"),
     title: h.gettext("Add unordered list")
   },
   execute: ({ initialState: n, textApi: t, setText: r }) => {
-    r(me(n, t, "- ").text);
+    r(xe(n, t, "- ").text);
   }
-}), ct = () => ({
+}), it = () => ({
   buttonProps: {
     "aria-label": h.gettext("Add ordered list"),
     title: h.gettext("Add ordered list")
   },
   execute: ({ initialState: n, textApi: t, setText: r }) => {
     r(
-      me(n, t, (s, o) => `${o + 1}. `).text
+      xe(n, t, (s, o) => `${o + 1}. `).text
     );
   }
-}), it = () => ({
+}), lt = () => ({
   buttonProps: {
     "aria-label": h.gettext("Add checked list"),
     title: h.gettext("Add checked list")
   },
   execute: ({ initialState: n, textApi: t, setText: r }) => {
-    r(me(n, t, () => "- [ ] ").text);
+    r(xe(n, t, () => "- [ ] ").text);
   }
-}), lt = () => ({
+}), dt = () => ({
   buttonProps: {
     "aria-label": h.gettext("Insert a quote"),
     title: h.gettext("Insert a quote")
@@ -284,27 +284,27 @@ const me = (n, t, r) => {
     const s = j({
       text: n.text,
       selection: n.selection
-    }), o = t.setSelectionRange(s), a = ue(
+    }), o = t.setSelectionRange(s), a = he(
       o.text,
       o.selection.start
     ), d = Array(a + 1).join(`
-`), f = fe(
+`), f = ge(
       o.text,
       o.selection.end
-    ), v = Array(f + 1).join(`
+    ), p = Array(f + 1).join(`
 `);
     t.replaceSelection(
-      `${d}> ${o.selectedText}${v}`
+      `${d}> ${o.selectedText}${p}`
     );
-    const m = o.selection.start + a + 2, p = m + o.selectedText.length;
+    const m = o.selection.start + a + 2, v = m + o.selectedText.length;
     r(
       t.setSelectionRange({
         start: m,
-        end: p
+        end: v
       }).text
     );
   }
-}), dt = () => ({
+}), ut = () => ({
   buttonProps: {
     "aria-label": h.gettext("Add strikethrough text"),
     title: h.gettext("Add strikethrough text")
@@ -321,27 +321,27 @@ const me = (n, t, r) => {
       }).text
     );
   }
-}), ut = () => [
+}), ft = () => [
   ["header", "bold", "italic", "strikethrough"],
   ["link", "quote", "code", "image"],
   ["unorderedList", "orderedList", "checkedList"]
-], ze = () => ({
-  header: tt,
-  bold: Ze,
-  italic: ot,
-  strikethrough: dt,
-  link: rt,
-  quote: lt,
-  code: De,
-  image: nt,
-  unorderedList: st,
-  orderedList: ct,
-  checkedList: it
+], Le = () => ({
+  header: nt,
+  bold: De,
+  italic: rt,
+  strikethrough: ut,
+  link: at,
+  quote: dt,
+  code: et,
+  image: ot,
+  unorderedList: ct,
+  orderedList: it,
+  checkedList: lt
 });
-function ft() {
+function fe() {
   return "save-image";
 }
-var J = { exports: {} }, H = {};
+var Q = { exports: {} }, V = {};
 /**
  * @license React
  * react-jsx-runtime.production.js
@@ -351,10 +351,10 @@ var J = { exports: {} }, H = {};
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-var Re;
+var Ne;
 function mt() {
-  if (Re) return H;
-  Re = 1;
+  if (Ne) return V;
+  Ne = 1;
   var n = Symbol.for("react.transitional.element"), t = Symbol.for("react.fragment");
   function r(s, o, a) {
     var d = null;
@@ -371,9 +371,9 @@ function mt() {
       props: a
     };
   }
-  return H.Fragment = t, H.jsx = r, H.jsxs = r, H;
+  return V.Fragment = t, V.jsx = r, V.jsxs = r, V;
 }
-var V = {};
+var G = {};
 /**
  * @license React
  * react-jsx-runtime.development.js
@@ -383,42 +383,42 @@ var V = {};
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-var Ne;
+var Oe;
 function ht() {
-  return Ne || (Ne = 1, process.env.NODE_ENV !== "production" && function() {
+  return Oe || (Oe = 1, process.env.NODE_ENV !== "production" && function() {
     function n(e) {
       if (e == null) return null;
       if (typeof e == "function")
-        return e.$$typeof === Ye ? null : e.displayName || e.name || null;
+        return e.$$typeof === We ? null : e.displayName || e.name || null;
       if (typeof e == "string") return e;
       switch (e) {
-        case E:
+        case W:
           return "Fragment";
-        case D:
-          return "Portal";
-        case R:
-          return "Profiler";
-        case z:
-          return "StrictMode";
         case te:
+          return "Portal";
+        case C:
+          return "Profiler";
+        case X:
+          return "StrictMode";
+        case oe:
           return "Suspense";
-        case ne:
+        case re:
           return "SuspenseList";
       }
       if (typeof e == "object")
         switch (typeof e.tag == "number" && console.error(
           "Received an unexpected object in getComponentNameFromType(). This is likely a bug in React. Please file an issue."
         ), e.$$typeof) {
-          case ge:
+          case R:
             return (e.displayName || "Context") + ".Provider";
-          case he:
+          case z:
             return (e._context.displayName || "Context") + ".Consumer";
-          case ee:
+          case ne:
             var c = e.render;
             return e = e.displayName, e || (e = c.displayName || c.name || "", e = e !== "" ? "ForwardRef(" + e + ")" : "ForwardRef"), e;
-          case oe:
+          case ae:
             return c = e.displayName || null, c !== null ? c : n(e.type) || "Memo";
-          case re:
+          case se:
             c = e._payload, e = e._init;
             try {
               return n(e(c));
@@ -450,8 +450,8 @@ function ht() {
     function s() {
     }
     function o() {
-      if (W === 0) {
-        ve = console.log, pe = console.info, ye = console.warn, ke = console.error, Ce = console.group, Ee = console.groupCollapsed, Te = console.groupEnd;
+      if (K === 0) {
+        ve = console.log, ye = console.info, ke = console.warn, Ce = console.error, Ee = console.group, we = console.groupCollapsed, Te = console.groupEnd;
         var e = {
           configurable: !0,
           enumerable: !0,
@@ -468,42 +468,42 @@ function ht() {
           groupEnd: e
         });
       }
-      W++;
+      K++;
     }
     function a() {
-      if (W--, W === 0) {
+      if (K--, K === 0) {
         var e = { configurable: !0, enumerable: !0, writable: !0 };
         Object.defineProperties(console, {
-          log: M({}, e, { value: ve }),
-          info: M({}, e, { value: pe }),
-          warn: M({}, e, { value: ye }),
-          error: M({}, e, { value: ke }),
-          group: M({}, e, { value: Ce }),
-          groupCollapsed: M({}, e, { value: Ee }),
-          groupEnd: M({}, e, { value: Te })
+          log: O({}, e, { value: ve }),
+          info: O({}, e, { value: ye }),
+          warn: O({}, e, { value: ke }),
+          error: O({}, e, { value: Ce }),
+          group: O({}, e, { value: Ee }),
+          groupCollapsed: O({}, e, { value: we }),
+          groupEnd: O({}, e, { value: Te })
         });
       }
-      0 > W && console.error(
+      0 > K && console.error(
         "disabledDepth fell below zero. This is a bug in React. Please file an issue."
       );
     }
     function d(e) {
-      if (se === void 0)
+      if (ie === void 0)
         try {
           throw Error();
         } catch (i) {
           var c = i.stack.trim().match(/\n( *(at )?)/);
-          se = c && c[1] || "", we = -1 < i.stack.indexOf(`
+          ie = c && c[1] || "", Se = -1 < i.stack.indexOf(`
     at`) ? " (<anonymous>)" : -1 < i.stack.indexOf("@") ? "@unknown:0:0" : "";
         }
       return `
-` + se + e + we;
+` + ie + e + Se;
     }
     function f(e, c) {
-      if (!e || ce) return "";
-      var i = ie.get(e);
+      if (!e || le) return "";
+      var i = de.get(e);
       if (i !== void 0) return i;
-      ce = !0, i = Error.prepareStackTrace, Error.prepareStackTrace = void 0;
+      le = !0, i = Error.prepareStackTrace, Error.prepareStackTrace = void 0;
       var u = null;
       u = N.H, N.H = null, o();
       try {
@@ -522,14 +522,14 @@ function ht() {
                   try {
                     Reflect.construct(A, []);
                   } catch (_) {
-                    var U = _;
+                    var F = _;
                   }
                   Reflect.construct(e, [], A);
                 } else {
                   try {
                     A.call();
                   } catch (_) {
-                    U = _;
+                    F = _;
                   }
                   e.call(A.prototype);
                 }
@@ -537,14 +537,14 @@ function ht() {
                 try {
                   throw Error();
                 } catch (_) {
-                  U = _;
+                  F = _;
                 }
                 (A = e()) && typeof A.catch == "function" && A.catch(function() {
                 });
               }
             } catch (_) {
-              if (_ && U && typeof _.stack == "string")
-                return [_.stack, U.stack];
+              if (_ && F && typeof _.stack == "string")
+                return [_.stack, F.stack];
             }
             return [null, null];
           }
@@ -562,41 +562,41 @@ function ht() {
         var l = y.DetermineComponentFrameRoot(), S = l[0], L = l[1];
         if (S && L) {
           var k = S.split(`
-`), O = L.split(`
+`), M = L.split(`
 `);
           for (l = g = 0; g < k.length && !k[g].includes(
             "DetermineComponentFrameRoot"
           ); )
             g++;
-          for (; l < O.length && !O[l].includes(
+          for (; l < M.length && !M[l].includes(
             "DetermineComponentFrameRoot"
           ); )
             l++;
-          if (g === k.length || l === O.length)
-            for (g = k.length - 1, l = O.length - 1; 1 <= g && 0 <= l && k[g] !== O[l]; )
+          if (g === k.length || l === M.length)
+            for (g = k.length - 1, l = M.length - 1; 1 <= g && 0 <= l && k[g] !== M[l]; )
               l--;
           for (; 1 <= g && 0 <= l; g--, l--)
-            if (k[g] !== O[l]) {
+            if (k[g] !== M[l]) {
               if (g !== 1 || l !== 1)
                 do
-                  if (g--, l--, 0 > l || k[g] !== O[l]) {
-                    var K = `
+                  if (g--, l--, 0 > l || k[g] !== M[l]) {
+                    var H = `
 ` + k[g].replace(
                       " at new ",
                       " at "
                     );
-                    return e.displayName && K.includes("<anonymous>") && (K = K.replace("<anonymous>", e.displayName)), typeof e == "function" && ie.set(e, K), K;
+                    return e.displayName && H.includes("<anonymous>") && (H = H.replace("<anonymous>", e.displayName)), typeof e == "function" && de.set(e, H), H;
                   }
                 while (1 <= g && 0 <= l);
               break;
             }
         }
       } finally {
-        ce = !1, N.H = u, a(), Error.prepareStackTrace = i;
+        le = !1, N.H = u, a(), Error.prepareStackTrace = i;
       }
-      return k = (k = e ? e.displayName || e.name : "") ? d(k) : "", typeof e == "function" && ie.set(e, k), k;
+      return k = (k = e ? e.displayName || e.name : "") ? d(k) : "", typeof e == "function" && de.set(e, k), k;
     }
-    function v(e) {
+    function p(e) {
       if (e == null) return "";
       if (typeof e == "function") {
         var c = e.prototype;
@@ -607,21 +607,21 @@ function ht() {
       }
       if (typeof e == "string") return d(e);
       switch (e) {
-        case te:
+        case oe:
           return d("Suspense");
-        case ne:
+        case re:
           return d("SuspenseList");
       }
       if (typeof e == "object")
         switch (e.$$typeof) {
-          case ee:
+          case ne:
             return e = f(e.render, !1), e;
-          case oe:
-            return v(e.type);
-          case re:
+          case ae:
+            return p(e.type);
+          case se:
             c = e._payload, e = e._init;
             try {
-              return v(e(c));
+              return p(e(c));
             } catch {
             }
         }
@@ -631,16 +631,16 @@ function ht() {
       var e = N.A;
       return e === null ? null : e.getOwner();
     }
-    function p(e) {
-      if (be.call(e, "key")) {
+    function v(e) {
+      if (pe.call(e, "key")) {
         var c = Object.getOwnPropertyDescriptor(e, "key").get;
         if (c && c.isReactWarning) return !1;
       }
       return e.key !== void 0;
     }
-    function b(e, c) {
+    function x(e, c) {
       function i() {
-        Se || (Se = !0, console.error(
+        _e || (_e = !0, console.error(
           "%s: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. (https://react.dev/link/special-props)",
           c
         ));
@@ -650,13 +650,13 @@ function ht() {
         configurable: !0
       });
     }
-    function C() {
+    function E() {
       var e = n(this.type);
-      return _e[e] || (_e[e] = !0, console.error(
+      return je[e] || (je[e] = !0, console.error(
         "Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release."
       )), e = this.props.ref, e !== void 0 ? e : null;
     }
-    function w(e, c, i, u, y, g) {
+    function T(e, c, i, u, y, g) {
       return i = g.ref, e = {
         $$typeof: Y,
         type: e,
@@ -665,7 +665,7 @@ function ht() {
         _owner: y
       }, (i !== void 0 ? i : null) !== null ? Object.defineProperty(e, "ref", {
         enumerable: !1,
-        get: C
+        get: E
       }) : Object.defineProperty(e, "ref", { enumerable: !1, value: null }), e._store = {}, Object.defineProperty(e._store, "validated", {
         configurable: !1,
         enumerable: !1,
@@ -679,31 +679,31 @@ function ht() {
       }), Object.freeze && (Object.freeze(e.props), Object.freeze(e)), e;
     }
     function P(e, c, i, u, y, g) {
-      if (typeof e == "string" || typeof e == "function" || e === E || e === R || e === z || e === te || e === ne || e === qe || typeof e == "object" && e !== null && (e.$$typeof === re || e.$$typeof === oe || e.$$typeof === ge || e.$$typeof === he || e.$$typeof === ee || e.$$typeof === We || e.getModuleId !== void 0)) {
+      if (typeof e == "string" || typeof e == "function" || e === W || e === C || e === X || e === oe || e === re || e === Ye || typeof e == "object" && e !== null && (e.$$typeof === se || e.$$typeof === ae || e.$$typeof === R || e.$$typeof === z || e.$$typeof === ne || e.$$typeof === Ke || e.getModuleId !== void 0)) {
         var l = c.children;
         if (l !== void 0)
           if (u)
-            if (ae(l)) {
+            if (ce(l)) {
               for (u = 0; u < l.length; u++)
-                G(l[u], e);
+                U(l[u], e);
               Object.freeze && Object.freeze(l);
             } else
               console.error(
                 "React.jsx: Static children should always be an array. You are likely explicitly calling React.jsxs or React.jsxDEV. Use the Babel transform instead."
               );
-          else G(l, e);
+          else U(l, e);
       } else
-        l = "", (e === void 0 || typeof e == "object" && e !== null && Object.keys(e).length === 0) && (l += " You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports."), e === null ? u = "null" : ae(e) ? u = "array" : e !== void 0 && e.$$typeof === Y ? (u = "<" + (n(e.type) || "Unknown") + " />", l = " Did you accidentally export a JSX literal instead of a component?") : u = typeof e, console.error(
+        l = "", (e === void 0 || typeof e == "object" && e !== null && Object.keys(e).length === 0) && (l += " You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports."), e === null ? u = "null" : ce(e) ? u = "array" : e !== void 0 && e.$$typeof === Y ? (u = "<" + (n(e.type) || "Unknown") + " />", l = " Did you accidentally export a JSX literal instead of a component?") : u = typeof e, console.error(
           "React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s",
           u,
           l
         );
-      if (be.call(c, "key")) {
+      if (pe.call(c, "key")) {
         l = n(e);
         var S = Object.keys(c).filter(function(k) {
           return k !== "key";
         });
-        u = 0 < S.length ? "{key: someKey, " + S.join(": ..., ") + ": ...}" : "{key: someKey}", je[l + u] || (S = 0 < S.length ? "{" + S.join(": ..., ") + ": ...}" : "{}", console.error(
+        u = 0 < S.length ? "{key: someKey, " + S.join(": ..., ") + ": ...}" : "{key: someKey}", Ae[l + u] || (S = 0 < S.length ? "{" + S.join(": ..., ") + ": ...}" : "{}", console.error(
           `A props object containing a "key" prop is being spread into JSX:
   let props = %s;
   <%s {...props} />
@@ -714,43 +714,43 @@ React keys must be passed directly to JSX without using spread:
           l,
           S,
           l
-        ), je[l + u] = !0);
+        ), Ae[l + u] = !0);
       }
-      if (l = null, i !== void 0 && (r(i), l = "" + i), p(c) && (r(c.key), l = "" + c.key), "key" in c) {
+      if (l = null, i !== void 0 && (r(i), l = "" + i), v(c) && (r(c.key), l = "" + c.key), "key" in c) {
         i = {};
         for (var L in c)
           L !== "key" && (i[L] = c[L]);
       } else i = c;
-      return l && b(
+      return l && x(
         i,
         typeof e == "function" ? e.displayName || e.name || "Unknown" : e
-      ), w(e, l, g, y, m(), i);
+      ), T(e, l, g, y, m(), i);
     }
-    function G(e, c) {
-      if (typeof e == "object" && e && e.$$typeof !== Ke) {
-        if (ae(e))
+    function U(e, c) {
+      if (typeof e == "object" && e && e.$$typeof !== He) {
+        if (ce(e))
           for (var i = 0; i < e.length; i++) {
             var u = e[i];
-            I(u) && $(u, c);
+            I(u) && J(u, c);
           }
         else if (I(e))
           e._store && (e._store.validated = 1);
-        else if (e === null || typeof e != "object" ? i = null : (i = xe && e[xe] || e["@@iterator"], i = typeof i == "function" ? i : null), typeof i == "function" && i !== e.entries && (i = i.call(e), i !== e))
+        else if (e === null || typeof e != "object" ? i = null : (i = be && e[be] || e["@@iterator"], i = typeof i == "function" ? i : null), typeof i == "function" && i !== e.entries && (i = i.call(e), i !== e))
           for (; !(e = i.next()).done; )
-            I(e.value) && $(e.value, c);
+            I(e.value) && J(e.value, c);
       }
     }
     function I(e) {
       return typeof e == "object" && e !== null && e.$$typeof === Y;
     }
-    function $(e, c) {
-      if (e._store && !e._store.validated && e.key == null && (e._store.validated = 1, c = q(c), !Ae[c])) {
-        Ae[c] = !0;
+    function J(e, c) {
+      if (e._store && !e._store.validated && e.key == null && (e._store.validated = 1, c = q(c), !Re[c])) {
+        Re[c] = !0;
         var i = "";
         e && e._owner != null && e._owner !== m() && (i = null, typeof e._owner.tag == "number" ? i = n(e._owner.type) : typeof e._owner.name == "string" && (i = e._owner.name), i = " It was passed a child from " + i + ".");
         var u = N.getCurrentStack;
         N.getCurrentStack = function() {
-          var y = v(e.type);
+          var y = p(e.type);
           return u && (y += u() || ""), y;
         }, console.error(
           'Each child in a list should have a unique "key" prop.%s%s See https://react.dev/link/warning-keys for more information.',
@@ -767,21 +767,21 @@ Check the render method of \`` + i + "`."), c || (e = n(e)) && (c = `
 
 Check the top-level render call using <` + e + ">."), c;
     }
-    var Z = He, Y = Symbol.for("react.transitional.element"), D = Symbol.for("react.portal"), E = Symbol.for("react.fragment"), z = Symbol.for("react.strict_mode"), R = Symbol.for("react.profiler"), he = Symbol.for("react.consumer"), ge = Symbol.for("react.context"), ee = Symbol.for("react.forward_ref"), te = Symbol.for("react.suspense"), ne = Symbol.for("react.suspense_list"), oe = Symbol.for("react.memo"), re = Symbol.for("react.lazy"), qe = Symbol.for("react.offscreen"), xe = Symbol.iterator, Ye = Symbol.for("react.client.reference"), N = Z.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, be = Object.prototype.hasOwnProperty, M = Object.assign, We = Symbol.for("react.client.reference"), ae = Array.isArray, W = 0, ve, pe, ye, ke, Ce, Ee, Te;
+    var $ = Ve, Y = Symbol.for("react.transitional.element"), te = Symbol.for("react.portal"), W = Symbol.for("react.fragment"), X = Symbol.for("react.strict_mode"), C = Symbol.for("react.profiler"), z = Symbol.for("react.consumer"), R = Symbol.for("react.context"), ne = Symbol.for("react.forward_ref"), oe = Symbol.for("react.suspense"), re = Symbol.for("react.suspense_list"), ae = Symbol.for("react.memo"), se = Symbol.for("react.lazy"), Ye = Symbol.for("react.offscreen"), be = Symbol.iterator, We = Symbol.for("react.client.reference"), N = $.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, pe = Object.prototype.hasOwnProperty, O = Object.assign, Ke = Symbol.for("react.client.reference"), ce = Array.isArray, K = 0, ve, ye, ke, Ce, Ee, we, Te;
     s.__reactDisabledLog = !0;
-    var se, we, ce = !1, ie = new (typeof WeakMap == "function" ? WeakMap : Map)(), Ke = Symbol.for("react.client.reference"), Se, _e = {}, je = {}, Ae = {};
-    V.Fragment = E, V.jsx = function(e, c, i, u, y) {
+    var ie, Se, le = !1, de = new (typeof WeakMap == "function" ? WeakMap : Map)(), He = Symbol.for("react.client.reference"), _e, je = {}, Ae = {}, Re = {};
+    G.Fragment = W, G.jsx = function(e, c, i, u, y) {
       return P(e, c, i, !1, u, y);
-    }, V.jsxs = function(e, c, i, u, y) {
+    }, G.jsxs = function(e, c, i, u, y) {
       return P(e, c, i, !0, u, y);
     };
-  }()), V;
+  }()), G;
 }
 var Me;
 function gt() {
-  return Me || (Me = 1, process.env.NODE_ENV === "production" ? J.exports = mt() : J.exports = ht()), J.exports;
+  return Me || (Me = 1, process.env.NODE_ENV === "production" ? Q.exports = mt() : Q.exports = ht()), Q.exports;
 }
-var x = gt();
+var b = gt();
 const xt = (n, t) => {
   n.setRangeText(
     t,
@@ -796,25 +796,25 @@ function bt(n) {
     n.hasOwnProperty.call(n, r) && n[r]().handleKeyCommand && t.push(r);
   return t;
 }
-class vt {
+class pt {
   refTextarea;
   constructor(t) {
     this.refTextarea = t;
   }
   replaceSelection = (t) => {
     const r = this.refTextarea.current;
-    return xt(r, t), X(r);
+    return xt(r, t), Z(r);
   };
   setSelectionRange = (t) => {
     const r = this.refTextarea.current;
-    return r.focus(), r.selectionStart = t.start, r.selectionEnd = t.end, X(r);
+    return r.focus(), r.selectionStart = t.start, r.selectionEnd = t.end, Z(r);
   };
   getState = () => {
     const t = this.refTextarea.current;
-    return X(t);
+    return Z(t);
   };
 }
-const X = (n) => ({
+const Z = (n) => ({
   selection: {
     start: n.selectionStart,
     end: n.selectionEnd
@@ -825,7 +825,7 @@ const X = (n) => ({
     n.selectionEnd
   )
 });
-class pt {
+class vt {
   setText;
   refTextarea;
   textApi;
@@ -847,7 +847,7 @@ class pt {
   }) {
     if (o && !o.saveImage)
       throw new Error("paste options are incomplete. saveImage are required ");
-    this.commandMap = { ...ze(), ...r || {} }, this.pasteOptions = o, this.keyActivatedCommands = bt(r), this.refTextarea = s, this.textApi = new vt(s), this.setText = t;
+    this.commandMap = { ...Le(), ...r || {} }, this.pasteOptions = o, this.keyActivatedCommands = bt(r), this.refTextarea = s, this.textApi = new pt(s), this.setText = t;
   }
   getCommand = (t) => {
     const r = this.commandMap[t];
@@ -869,7 +869,7 @@ class pt {
     if (this.isExecuting)
       return;
     this.isExecuting = !0;
-    const s = this.refTextarea.current, o = X(s);
+    const s = this.refTextarea.current, o = Z(s);
     await this.getCommand(t).execute({
       setText: this.setText,
       initialState: o,
@@ -880,38 +880,36 @@ class pt {
   /**
    * Executes the paste command
    */
-  // public executePasteCommand = async (event: ClipboardEvent): Promise<void> => {
-  //   if (this.pasteOptions) {
-  //     return this.executeCommand(
-  //       this.pasteOptions.command || getDefaultSaveImageCommandName(),
-  //       {
-  //         pasteOptions: this.pasteOptions,
-  //         event: event,
-  //       } as MdePasteCommandContext,
-  //     )
-  //   }
-  // }
+  executePasteCommand = async (t) => {
+    if (this.pasteOptions)
+      return this.executeCommand(
+        this.pasteOptions.command || fe(),
+        {
+          pasteOptions: this.pasteOptions,
+          event: t
+        }
+      );
+  };
   /**
    * Executes the drop command
    */
-  // public executeDropCommand = async (event: DragEvent): Promise<void> => {
-  //   if (this.pasteOptions) {
-  //     return this.executeCommand(
-  //       this.pasteOptions.command || getDefaultSaveImageCommandName(),
-  //       {
-  //         pasteOptions: this.pasteOptions,
-  //         event: event,
-  //       } as MdePasteCommandContext,
-  //     )
-  //   }
-  // }
+  executeDropCommand = async (t) => {
+    if (this.pasteOptions)
+      return this.executeCommand(
+        this.pasteOptions.command || fe(),
+        {
+          pasteOptions: this.pasteOptions,
+          event: t
+        }
+      );
+  };
   /**
    * Executes the "select image" command
    */
   executeSelectImageCommand = async (t) => {
     if (this.pasteOptions)
       return this.executeCommand(
-        this.pasteOptions.command || ft(),
+        this.pasteOptions.command || fe(),
         {
           pasteOptions: this.pasteOptions,
           event: t
@@ -930,7 +928,7 @@ class pt {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const yt = (n) => n.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase(), Le = (...n) => n.filter((t, r, s) => !!t && t.trim() !== "" && s.indexOf(t) === r).join(" ").trim();
+const yt = (n) => n.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase(), Be = (...n) => n.filter((t, r, s) => !!t && t.trim() !== "" && s.indexOf(t) === r).join(" ").trim();
 /**
  * @license lucide-react v0.469.0 - ISC
  *
@@ -954,7 +952,7 @@ var kt = {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const Ct = Q(
+const Ct = ee(
   ({
     color: n = "currentColor",
     size: t = 24,
@@ -964,20 +962,20 @@ const Ct = Q(
     children: a,
     iconNode: d,
     ...f
-  }, v) => F(
+  }, p) => D(
     "svg",
     {
-      ref: v,
+      ref: p,
       ...kt,
       width: t,
       height: t,
       stroke: n,
       strokeWidth: s ? Number(r) * 24 / Number(t) : r,
-      className: Le("lucide", o),
+      className: Be("lucide", o),
       ...f
     },
     [
-      ...d.map(([m, p]) => F(m, p)),
+      ...d.map(([m, v]) => D(m, v)),
       ...Array.isArray(a) ? a : [a]
     ]
   )
@@ -988,12 +986,12 @@ const Ct = Q(
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const T = (n, t) => {
-  const r = Q(
-    ({ className: s, ...o }, a) => F(Ct, {
+const w = (n, t) => {
+  const r = ee(
+    ({ className: s, ...o }, a) => D(Ct, {
       ref: a,
       iconNode: t,
-      className: Le(`lucide-${yt(n)}`, s),
+      className: Be(`lucide-${yt(n)}`, s),
       ...o
     })
   );
@@ -1005,7 +1003,7 @@ const T = (n, t) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const Et = T("Bold", [
+const Et = w("Bold", [
   [
     "path",
     { d: "M6 12h9a4 4 0 0 1 0 8H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h7a4 4 0 0 1 0 8", key: "mg9rjx" }
@@ -1017,7 +1015,7 @@ const Et = T("Bold", [
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const Tt = T("CodeXml", [
+const wt = w("CodeXml", [
   ["path", { d: "m18 16 4-4-4-4", key: "1inbqp" }],
   ["path", { d: "m6 8-4 4 4 4", key: "15zrgr" }],
   ["path", { d: "m14.5 4-5 16", key: "e7oirm" }]
@@ -1028,7 +1026,7 @@ const Tt = T("CodeXml", [
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const wt = T("Heading", [
+const Tt = w("Heading", [
   ["path", { d: "M6 12h12", key: "8npq4p" }],
   ["path", { d: "M6 20V4", key: "1w1bmo" }],
   ["path", { d: "M18 20V4", key: "o2hl4u" }]
@@ -1039,7 +1037,7 @@ const wt = T("Heading", [
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const St = T("Image", [
+const St = w("Image", [
   ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", ry: "2", key: "1m3agn" }],
   ["circle", { cx: "9", cy: "9", r: "2", key: "af1f0g" }],
   ["path", { d: "m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21", key: "1xmnt7" }]
@@ -1050,7 +1048,7 @@ const St = T("Image", [
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const _t = T("Italic", [
+const _t = w("Italic", [
   ["line", { x1: "19", x2: "10", y1: "4", y2: "4", key: "15jd3p" }],
   ["line", { x1: "14", x2: "5", y1: "20", y2: "20", key: "bu0au3" }],
   ["line", { x1: "15", x2: "9", y1: "4", y2: "20", key: "uljnxc" }]
@@ -1061,7 +1059,7 @@ const _t = T("Italic", [
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const jt = T("Link", [
+const jt = w("Link", [
   ["path", { d: "M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71", key: "1cjeqo" }],
   ["path", { d: "M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71", key: "19qd67" }]
 ]);
@@ -1071,7 +1069,7 @@ const jt = T("Link", [
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const At = T("ListChecks", [
+const At = w("ListChecks", [
   ["path", { d: "m3 17 2 2 4-4", key: "1jhpwq" }],
   ["path", { d: "m3 7 2 2 4-4", key: "1obspn" }],
   ["path", { d: "M13 6h8", key: "15sg57" }],
@@ -1084,7 +1082,7 @@ const At = T("ListChecks", [
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const Rt = T("ListOrdered", [
+const Rt = w("ListOrdered", [
   ["path", { d: "M10 12h11", key: "6m4ad9" }],
   ["path", { d: "M10 18h11", key: "11hvi2" }],
   ["path", { d: "M10 6h11", key: "c7qv1k" }],
@@ -1098,7 +1096,7 @@ const Rt = T("ListOrdered", [
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const Nt = T("List", [
+const Nt = w("List", [
   ["path", { d: "M3 12h.01", key: "nlz23k" }],
   ["path", { d: "M3 18h.01", key: "1tta3j" }],
   ["path", { d: "M3 6h.01", key: "1rqtza" }],
@@ -1112,7 +1110,7 @@ const Nt = T("List", [
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const Mt = T("Quote", [
+const Ot = w("Quote", [
   [
     "path",
     {
@@ -1134,70 +1132,70 @@ const Mt = T("Quote", [
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const Ot = T("Strikethrough", [
+const Mt = w("Strikethrough", [
   ["path", { d: "M16 4H9a3 3 0 0 0-2.83 4", key: "43sutm" }],
   ["path", { d: "M14 12a4 4 0 0 1 0 8H6", key: "nlfj13" }],
   ["line", { x1: "4", x2: "20", y1: "12", y2: "12", key: "1e0a9i" }]
 ]), Pt = "fc-mde__main_e76010f9ac3f69e6", $t = {
   main: Pt
-}, zt = (n) => /* @__PURE__ */ x.jsx("div", { "data-fc-mde-svg-icon-container": !0, ...n }), Lt = ({ icon: n }) => {
+}, zt = (n) => /* @__PURE__ */ b.jsx("div", { "data-fc-mde-svg-icon-container": !0, ...n }), Lt = ({ icon: n }) => {
   const t = {
-    header: wt,
+    header: Tt,
     bold: Et,
     italic: _t,
-    strikethrough: Ot,
-    code: Tt,
-    quote: Mt,
+    strikethrough: Mt,
+    code: wt,
+    quote: Ot,
     unorderedList: Rt,
     orderedList: Nt,
     checkedList: At,
     link: jt,
     image: St
   }[n] ?? null;
-  return t ? /* @__PURE__ */ x.jsx(zt, { children: /* @__PURE__ */ x.jsx(t, { className: $t.main, "data-fc-mde-svg-icon": !0 }) }) : null;
-}, Bt = "fc-mde__content_59ee8347a45e0596", Oe = {
+  return t ? /* @__PURE__ */ b.jsx(zt, { children: /* @__PURE__ */ b.jsx(t, { className: $t.main, "data-fc-mde-svg-icon": !0 }) }) : null;
+}, Bt = "fc-mde__content_59ee8347a45e0596", Pe = {
   content: Bt
-}, Be = Q(
+}, Ie = ee(
   ({ markdown: n, generateMarkdownPreview: t, loadingPreview: r }, s) => {
-    const [o, a] = le(!0), [d, f] = le(""), [v, m] = le(""), p = de(async () => {
+    const [o, a] = ue(!0), [d, f] = ue(""), [p, m] = ue(""), v = me(async () => {
       f(await t(n)), a(!1);
     }, [t, n]);
-    Ve(() => {
-      n !== v && (p(), m(n));
-    }, [v, n, p]);
-    let b = null;
-    return o ? b = /* @__PURE__ */ x.jsx("div", { className: Oe.content, "data-fc-mde-preview-content": !0, children: r }) : b = /* @__PURE__ */ x.jsx(
+    Ge(() => {
+      n !== p && (v(), m(n));
+    }, [p, n, v]);
+    let x = null;
+    return o ? x = /* @__PURE__ */ b.jsx("div", { className: Pe.content, "data-fc-mde-preview-content": !0, children: r }) : x = /* @__PURE__ */ b.jsx(
       "div",
       {
-        className: Oe.content,
+        className: Pe.content,
         ref: s,
         "data-fc-mde-preview-content": !0,
         dangerouslySetInnerHTML: { __html: d }
       }
-    ), /* @__PURE__ */ x.jsx("div", { "data-mde-preview": !0, "data-loading": o || void 0, children: b });
+    ), /* @__PURE__ */ b.jsx("div", { "data-mde-preview": !0, "data-loading": o || void 0, children: x });
   }
 );
-Be.displayName = "MdePreview";
-const It = "fc-mde__container_5d480c472a769b14", qt = "fc-mde__main_bbe7a060507c7387", Pe = {
+Ie.displayName = "MdePreview";
+const It = "fc-mde__container_5d480c472a769b14", qt = "fc-mde__main_bbe7a060507c7387", $e = {
   container: It,
   main: qt
-}, Ie = Q(
+}, qe = ee(
   ({ value: n, setValue: t, textareaComponent: r, onKeyCommand: s, ...o }, a) => {
-    const d = r || "textarea", f = de((m) => {
+    const d = r || "textarea", f = me((m) => {
       m.preventDefault(), (m.clipboardData.files ?? []).length;
-    }, []), v = de(
+    }, []), p = me(
       (m) => {
         t(m.target.value);
       },
       [t]
     );
-    return /* @__PURE__ */ x.jsx("div", { className: Pe.container, "data-fc-mde-textarea-container": !0, children: /* @__PURE__ */ x.jsx(
+    return /* @__PURE__ */ b.jsx("div", { className: $e.container, "data-fc-mde-textarea-container": !0, children: /* @__PURE__ */ b.jsx(
       d,
       {
         ref: a,
-        className: Pe.main,
+        className: $e.main,
         value: n,
-        onChange: v,
+        onChange: p,
         onKeyDown: s,
         onPaste: f,
         "data-fc-mde-textarea": !0,
@@ -1206,7 +1204,7 @@ const It = "fc-mde__container_5d480c472a769b14", qt = "fc-mde__main_bbe7a060507c
     ) });
   }
 );
-Ie.displayName = "MdeTextarea";
+qe.displayName = "MdeTextarea";
 const Yt = "fc-mde__tab_707475e156219802", Wt = "fc-mde__tabButton_5a17ac662ec07934", Kt = "fc-mde__header_1d136c3d982ffdcc", Ht = "fc-mde__btnGroup_b384efee5a15e109", Vt = "fc-mde__btn_a61d3b8445301110", B = {
   tab: Yt,
   tabButton: Wt,
@@ -1224,7 +1222,7 @@ const Yt = "fc-mde__tab_707475e156219802", Wt = "fc-mde__tabButton_5a17ac662ec07
   name: a
 }) => {
   const d = { ...Gt, ...r || {} }, f = n || "button";
-  return /* @__PURE__ */ x.jsx("div", { className: B.btn, "data-fc-mde-toolbar-button": !0, children: F(
+  return /* @__PURE__ */ b.jsx("div", { className: B.btn, "data-fc-mde-toolbar-button": !0, children: D(
     f,
     {
       "data-fc-mde-toolbar-button-item": !0,
@@ -1239,7 +1237,7 @@ const Yt = "fc-mde__tab_707475e156219802", Wt = "fc-mde__tabButton_5a17ac662ec07
 }, Jt = ({
   hidden: n,
   children: t
-}) => /* @__PURE__ */ x.jsx(
+}) => /* @__PURE__ */ b.jsx(
   "div",
   {
     className: B.btnGroup,
@@ -1256,143 +1254,146 @@ const Yt = "fc-mde__tab_707475e156219802", Wt = "fc-mde__tabButton_5a17ac662ec07
   writeButtonProps: a,
   previewButtonProps: d,
   tab: f,
-  buttonProps: v
+  buttonProps: p
 }) => {
-  const m = (b, C) => {
-    b.preventDefault(), n(C);
+  const m = (x, E) => {
+    x.preventDefault(), n(E);
   };
   if (!t?.length)
     return null;
-  const p = /* @__PURE__ */ x.jsxs("div", { className: B.tab, "data-fc-mde-tab": !0, children: [
-    /* @__PURE__ */ x.jsx(
+  const v = /* @__PURE__ */ b.jsxs("div", { className: B.tab, "data-fc-mde-tab": !0, children: [
+    /* @__PURE__ */ b.jsx(
       "button",
       {
         type: "button",
         className: B.tabButton,
         "data-fc-mde-tab-button": !0,
-        onClick: (b) => m(b, "write"),
+        onClick: (x) => m(x, "write"),
         "data-active": f === "write" || void 0,
         ...a,
         children: h.gettext("Write")
       }
     ),
-    /* @__PURE__ */ x.jsx(
+    /* @__PURE__ */ b.jsx(
       "button",
       {
         type: "button",
         className: B.tabButton,
         "data-fc-mde-tab-button": !0,
-        onClick: (b) => m(b, "preview"),
+        onClick: (x) => m(x, "preview"),
         "data-active": f === "preview" || void 0,
         ...d,
         children: h.gettext("Preview")
       }
     )
   ] });
-  return /* @__PURE__ */ x.jsxs("div", { className: B.header, "data-fc-mde-header": !0, children: [
-    o || p,
-    t.map((b, C) => /* @__PURE__ */ x.jsx(Jt, { hidden: f === "preview", children: b.map((w, P) => /* @__PURE__ */ x.jsx(
+  return /* @__PURE__ */ b.jsxs("div", { className: B.header, "data-fc-mde-header": !0, children: [
+    o || v,
+    t.map((x, E) => /* @__PURE__ */ b.jsx(Jt, { hidden: f === "preview", children: x.map((T, P) => /* @__PURE__ */ b.jsx(
       Ut,
       {
-        name: w.commandName,
-        buttonContent: w.buttonContent,
-        buttonProps: { ...v || {}, ...w.buttonProps },
-        onClick: () => r(w.commandName),
+        name: T.commandName,
+        buttonContent: T.buttonContent,
+        buttonProps: { ...p || {}, ...T.buttonProps },
+        onClick: () => r(T.commandName),
         readOnly: s,
-        buttonComponentClass: w.buttonComponentClass
+        buttonComponentClass: T.buttonComponentClass
       },
       P
-    )) }, C))
+    )) }, E))
   ] });
-}, Ft = "fc-mde__main_c29a242caf055ec0", Qt = "fc-mde__container_8e4c12095dec4180", $e = {
+}, Ft = "fc-mde__main_c29a242caf055ec0", Qt = "fc-mde__container_8e4c12095dec4180", ze = {
   main: Ft,
   container: Qt
 }, Dt = ({
   setText: n,
   refTextarea: t,
-  commands: r = ze(),
-  toolbarCommands: s = ut(),
-  getIcon: o = ($) => /* @__PURE__ */ x.jsx(Lt, { icon: $ }),
+  commands: r = Le(),
+  toolbarCommands: s = ft(),
+  getIcon: o = (q) => /* @__PURE__ */ b.jsx(Lt, { icon: q }),
   readOnly: a = !1,
   selectedTab: d = "write",
   disablePreview: f = !1,
-  // paste,
-  onTabChange: v,
-  loadingPreview: m,
-  text: p,
-  generateMarkdownPreview: b,
-  textareaComponent: C,
-  commandButtons: w,
-  writeButton: P,
-  previewButton: G,
-  textareaProps: I
+  paste: p,
+  onTabChange: m,
+  loadingPreview: v,
+  text: x,
+  generateMarkdownPreview: E,
+  textareaComponent: T,
+  commandButtons: P,
+  writeButton: U,
+  previewButton: I,
+  textareaProps: J
 }) => {
-  const $ = Ge(null), q = new pt({
+  const q = Ue(null), $ = new vt({
     setText: n,
     customCommands: r,
-    refTextarea: t
-    // paste: paste? { ...pasteOptionDefaults, ...paste } : undefined,
-  }), Z = (E) => {
-    v(E);
-  }, Y = async (E) => {
-    await q.executeCommand(E);
-  }, D = s.map((E) => E.map((z) => {
-    const R = q.getCommand(z);
+    refTextarea: t,
+    pasteOptions: p
+  }), Y = async (C) => {
+    p?.saveImage && await $.executePasteCommand(C);
+  }, te = (C) => {
+    m(C);
+  }, W = async (C) => {
+    await $.executeCommand(C);
+  }, X = s.map((C) => C.map((z) => {
+    const R = $.getCommand(z);
     return {
       commandName: z,
       buttonContent: R.icon ? R.icon(o) : o(z),
       buttonProps: R.buttonProps,
       buttonComponentClass: R.buttonComponentClass
     };
-  })).filter((E) => E);
-  return /* @__PURE__ */ x.jsxs("div", { className: $e.main, "data-fc-mde": !0, children: [
-    /* @__PURE__ */ x.jsx(
+  })).filter((C) => C);
+  return /* @__PURE__ */ b.jsxs("div", { className: ze.main, "data-fc-mde": !0, children: [
+    /* @__PURE__ */ b.jsx(
       Xt,
       {
-        buttons: D,
-        onCommand: Y,
-        onTabChange: Z,
+        buttons: X,
+        onCommand: W,
+        onTabChange: te,
         tab: d,
         readOnly: a,
         disablePreview: f,
-        buttonProps: w,
-        writeButtonProps: P,
-        previewButtonProps: G
+        buttonProps: P,
+        writeButtonProps: U,
+        previewButtonProps: I
       }
     ),
-    /* @__PURE__ */ x.jsx(
+    /* @__PURE__ */ b.jsx(
       "div",
       {
-        className: $e.container,
+        className: ze.container,
         "data-fc-mde-container": !0,
         "data-hidden": d === "preview" || void 0,
-        children: /* @__PURE__ */ x.jsx(
-          Ie,
+        children: /* @__PURE__ */ b.jsx(
+          qe,
           {
             ref: t,
-            value: p,
+            value: x,
             setValue: n,
-            textareaComponent: C,
-            onKeyCommand: q.handleKeyCommand,
-            ...I
+            textareaComponent: T,
+            onKeyCommand: $.handleKeyCommand,
+            onPaste: Y,
+            ...J
           }
         )
       }
     ),
-    d !== "write" && /* @__PURE__ */ x.jsx(
-      Be,
+    d !== "write" && /* @__PURE__ */ b.jsx(
+      Ie,
       {
-        ref: $,
-        loadingPreview: m,
-        generateMarkdownPreview: b,
-        markdown: p
+        ref: q,
+        loadingPreview: v,
+        generateMarkdownPreview: E,
+        markdown: x
       }
     )
   ] });
 };
 export {
   Dt as Mde,
-  ze as getDefaultCommandMap,
-  ut as getDefaultToolbarCommands,
+  Le as getDefaultCommandMap,
+  ft as getDefaultToolbarCommands,
   j as selectWord
 };

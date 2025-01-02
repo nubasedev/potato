@@ -41,9 +41,11 @@ export declare class MdeCommandOrchestrator {
     /**
      * Executes the paste command
      */
+    executePasteCommand: (event: ClipboardEvent) => Promise<void>;
     /**
      * Executes the drop command
      */
+    executeDropCommand: (event: DragEvent) => Promise<void>;
     /**
      * Executes the "select image" command
      */
