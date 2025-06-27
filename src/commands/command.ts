@@ -4,8 +4,8 @@ import {
   ReactNode,
   type ButtonHTMLAttributes,
 } from 'react'
-import { MdeTextApi, MdeTextState } from '../typings/command-options'
-import { MdeHandleKeyCommand } from '../typings/function-types'
+import { MdeTextApi, MdeTextState } from '../typings/command-options.ts'
+import { MdeHandleKeyCommand } from '../typings/function-types.ts'
 export type MdeGetIcon = (iconName: string) => ReactNode
 export interface MdeExecuteOptions {
   setText: (text: string) => void

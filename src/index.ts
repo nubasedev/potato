@@ -1,10 +1,10 @@
-import { MdeCommandProps } from './commands/command'
+import { MdeCommandProps } from './commands/command.ts'
 import {
   getDefaultCommandMap,
   getDefaultToolbarCommands,
-} from './commands/default-commands/defaults'
-import { Mde } from './components/bootstrap'
-import { MdeTabProps } from './components/toolbar/typings'
-import { selectWord } from './utils/markdown-util'
-export { Mde, getDefaultCommandMap, getDefaultToolbarCommands, selectWord }
+} from './commands/default-commands/defaults.ts'
+import { Mde } from './components/bootstrap/index.tsx'
+import { MdeTabProps } from './components/toolbar/typings.ts'
+import { selectWord } from './utils/markdown-util.ts'
+export { getDefaultCommandMap, getDefaultToolbarCommands, Mde, selectWord }
 export type { MdeCommandProps, MdeTabProps }

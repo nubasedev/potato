@@ -2,6 +2,7 @@
   "compilerOptions": {
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true,
     "alwaysStrict": true,
     "baseUrl": ".",
     "declaration": true,
@@ -21,6 +22,11 @@
     ],
     "module": "ESNext",
     "moduleResolution": "node",
+    "moduleSuffixes": [
+      ".ts",
+      ".tsx",
+      ""
+    ],
     "newLine": "LF",
     "noEmit": true,
     "noEmitOnError": true,

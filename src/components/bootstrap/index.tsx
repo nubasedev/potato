@@ -1,17 +1,17 @@
 import { FC, useRef } from 'react'
-import { MdeCommandOrchestrator } from '../../commands/command-orchestrator'
+import { MdeCommandOrchestrator } from '../../commands/command-orchestrator.ts'
 import {
   getDefaultCommandMap,
   getDefaultToolbarCommands,
-} from '../../commands/default-commands/defaults'
-import { MdeSvgIcon } from '../icon/svg-icon'
-import { MdePreview } from '../preview'
-import { MdeTextarea } from '../textarea'
-import { MdeToolbar } from '../toolbar'
-import { MdeTabProps, MdeToolbarBtnData } from '../toolbar/typings'
+} from '../../commands/default-commands/defaults.ts'
+import { MdeSvgIcon } from '../icon/svg-icon.tsx'
+import { MdePreview } from '../preview/index.tsx'
+import { MdeTextarea } from '../textarea/index.tsx'
+import { MdeToolbar } from '../toolbar/index.tsx'
+import { MdeTabProps, MdeToolbarBtnData } from '../toolbar/typings.ts'
 import './global.scss'
 import styles from './styles.module.scss'
-import { MdeProps } from './typings'
+import { MdeProps } from './typings.ts'
 export const Mde: FC<MdeProps> = ({
   setText,
   refTextarea,

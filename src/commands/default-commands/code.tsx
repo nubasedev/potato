@@ -1,10 +1,10 @@
-import { MdeLanguage } from '../../components/language'
+import { MdeLanguage } from '../../components/language/index.ts'
 import {
   getBreaksNeededForEmptyLineAfter,
   getBreaksNeededForEmptyLineBefore,
   selectWord,
-} from '../../utils/markdown-util'
-import { MdeCommandProps } from '../command'
+} from '../../utils/markdown-util.ts'
+import { MdeCommandProps } from '../command.ts'
 export const codeCommand = (): MdeCommandProps => ({
   buttonProps: {
     'aria-label': MdeLanguage.gettext('Insert code'),

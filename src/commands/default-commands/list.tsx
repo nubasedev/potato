@@ -1,11 +1,11 @@
-import { MdeLanguage } from '../../components/language'
-import { MdeTextApi, MdeTextState } from '../../typings/command-options'
+import { MdeLanguage } from '../../components/language/index.ts'
+import { MdeTextApi, MdeTextState } from '../../typings/command-options.ts'
 import {
   getBreaksNeededForEmptyLineAfter,
   getBreaksNeededForEmptyLineBefore,
   selectWord,
-} from '../../utils/markdown-util'
-import { MdeCommandProps } from '../command'
+} from '../../utils/markdown-util.ts'
+import { MdeCommandProps } from '../command.ts'
 export type AlterLineFunction = (line: string, index: number) => string
 /**
  * Inserts insertionString before each line

@@ -5,7 +5,7 @@ import {
   type ChangeEvent,
 } from 'react'
 import styles from './styles.module.scss'
-import { MdeTextareaProps } from './typings'
+import { MdeTextareaProps } from './typings.ts'
 export const MdeTextarea = forwardRef<HTMLTextAreaElement, MdeTextareaProps>(
   ({ value, setValue, textareaComponent, onKeyCommand, ...props }, ref) => {
     const TextareaComponent = textareaComponent || 'textarea'

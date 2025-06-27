@@ -1,9 +1,9 @@
 import { FC, MouseEvent } from 'react'
-import { MdeLanguage } from '../language'
-import { MdeToolbarButton } from './btn'
-import { MdeToolbarBtnGroup } from './group'
+import { MdeLanguage } from '../language/index.ts'
+import { MdeToolbarButton } from './btn.tsx'
+import { MdeToolbarBtnGroup } from './group.tsx'
 import styles from './styles.module.scss'
-import { MdeTabProps, MdeToolbarBtnData, MdeToolbarProps } from './typings'
+import { MdeTabProps, MdeToolbarBtnData, MdeToolbarProps } from './typings.ts'
 export const MdeToolbar: FC<MdeToolbarProps> = ({
   onTabChange,
   buttons,

@@ -1,19 +1,19 @@
 import { ChangeEvent, KeyboardEvent, RefObject } from 'react'
-import { MdeTextApi, MdeTextState } from '../typings/command-options'
-import { MdeSelection } from '../typings/selection'
-import { insertText } from '../utils/insert-text-at-position'
+import { MdeTextApi, MdeTextState } from '../typings/command-options.ts'
+import { MdeSelection } from '../typings/selection.ts'
+import { insertText } from '../utils/insert-text-at-position.ts'
+import { extractKeyActivatedCommands } from './command-utils.ts'
 import {
   MdeCommandContext,
   MdeCommandMapProps,
   MdeCommandProps,
   MdePasteCommandContext,
   MdePasteOptions,
-} from './command'
-import { extractKeyActivatedCommands } from './command-utils'
+} from './command.ts'
 import {
   getDefaultCommandMap,
   getDefaultSaveImageCommandName,
-} from './default-commands/defaults'
+} from './default-commands/defaults.ts'
 export class MdeTextAreaTextApi implements MdeTextApi {
   private readonly refTextarea: RefObject<HTMLTextAreaElement | null>
   constructor(refTextarea: RefObject<HTMLTextAreaElement | null>) {

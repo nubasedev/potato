@@ -1,7 +1,7 @@
-import { MdeLanguage } from '../../components/language'
-import { MdeTextApi, MdeTextState } from '../../typings/command-options'
-import { selectWord } from '../../utils/markdown-util'
-import { MdeCommandProps } from '../command'
+import { MdeLanguage } from '../../components/language/index.ts'
+import { MdeTextApi, MdeTextState } from '../../typings/command-options.ts'
+import { selectWord } from '../../utils/markdown-util.ts'
+import { MdeCommandProps } from '../command.ts'
 const setHeader = (
   initialState: MdeTextState,
   api: MdeTextApi,

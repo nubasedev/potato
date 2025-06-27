@@ -9,9 +9,9 @@ import {
   MdeCommandMapProps,
   MdeGetIcon,
   type MdePasteOptions,
-} from '../../commands/command'
-import { MdeGenerateMarkdownPreview } from '../../typings/function-types'
-import { MdeTabProps } from '../toolbar/typings'
+} from '../../commands/command.ts'
+import { MdeGenerateMarkdownPreview } from '../../typings/function-types.ts'
+import { MdeTabProps } from '../toolbar/typings.ts'
 export interface MdeProps {
   text: string
   setText: (text: string) => void

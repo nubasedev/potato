@@ -1,4 +1,4 @@
-import { MdeSelection } from './selection'
+import { MdeSelection } from './selection.ts'
 /**
  * The state of the text of the whole editor
  */

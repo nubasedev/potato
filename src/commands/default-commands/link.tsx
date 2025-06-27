@@ -1,6 +1,6 @@
-import { MdeLanguage } from '../../components/language'
-import { selectWord } from '../../utils/markdown-util'
-import { MdeCommandProps } from '../command'
+import { MdeLanguage } from '../../components/language/index.ts'
+import { selectWord } from '../../utils/markdown-util.ts'
+import { MdeCommandProps } from '../command.ts'
 export const linkCommand = (): MdeCommandProps => ({
   buttonProps: {
     'aria-label': MdeLanguage.gettext('Add a link'),

@@ -1,6 +1,6 @@
 import { forwardRef, useCallback, useEffect, useState } from 'react'
 import styles from './styles.module.scss'
-import { MdePreviewProps } from './typings'
+import { MdePreviewProps } from './typings.ts'
 export const MdePreview = forwardRef<HTMLDivElement, MdePreviewProps>(
   ({ markdown, generateMarkdownPreview, loadingPreview }, ref) => {
     const [loading, setLoading] = useState<boolean>(true)

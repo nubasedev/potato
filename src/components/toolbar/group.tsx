@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import styles from './styles.module.scss'
-import { MdeToolbarBtnGroupProps } from './typings'
+import { MdeToolbarBtnGroupProps } from './typings.ts'
 export const MdeToolbarBtnGroup: FC<MdeToolbarBtnGroupProps> = ({
   hidden,
   children,

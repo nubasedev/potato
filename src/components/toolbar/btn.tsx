@@ -1,6 +1,6 @@
 import { createElement, FC } from 'react'
 import styles from './styles.module.scss'
-import { MdeToolbarBtnProps } from './typings'
+import { MdeToolbarBtnProps } from './typings.ts'
 const defaultButtonProps = {
   tabIndex: -1,
 }

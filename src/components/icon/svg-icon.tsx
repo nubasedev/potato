@@ -13,7 +13,7 @@ import {
 } from 'lucide-react'
 import { FC, type HTMLProps } from 'react'
 import styles from './styles.module.scss'
-import { MdeIconProviderProps } from './typings'
+import { MdeIconProviderProps } from './typings.ts'
 const MdeSvgContainer: FC<HTMLProps<HTMLDivElement>> = (props) => (
   <div data-fc-mde-svg-icon-container {...props} />
 )

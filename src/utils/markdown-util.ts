@@ -1,5 +1,5 @@
-import { MdeSelection } from '../typings/selection'
-import { MdeTextSection } from '../typings/text-section'
+import { MdeSelection } from '../typings/selection.ts'
+import { MdeTextSection } from '../typings/text-section.ts'
 export function getSurroundingWord(
   text: string,
   position: number,
