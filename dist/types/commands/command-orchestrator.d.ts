@@ -1,7 +1,7 @@
-import { ChangeEvent, KeyboardEvent, RefObject } from 'react';
-import { MdeTextApi, MdeTextState } from '../typings/command-options';
-import { MdeSelection } from '../typings/selection';
-import { MdeCommandContext, MdeCommandMapProps, MdeCommandProps, MdePasteOptions } from './command';
+import { ChangeEvent, KeyboardEvent, RefObject, ClipboardEvent } from 'react';
+import { MdeTextApi, MdeTextState } from '../typings/command-options.ts';
+import { MdeSelection } from '../typings/selection.ts';
+import { MdeCommandContext, MdeCommandMapProps, MdeCommandProps, MdePasteOptions } from './command.ts';
 export declare class MdeTextAreaTextApi implements MdeTextApi {
     private readonly refTextarea;
     constructor(refTextarea: RefObject<HTMLTextAreaElement | null>);
@@ -41,7 +41,7 @@ export declare class MdeCommandOrchestrator {
     /**
      * Executes the paste command
      */
-    executePasteCommand: (event: ClipboardEvent) => Promise<void>;
+    executePasteCommand: (event: ClipboardEvent<HTMLTextAreaElement>) => Promise<void>;
     /**
      * Executes the drop command
      */

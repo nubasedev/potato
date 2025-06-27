@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes, FC, ReactNode, RefObject, TextareaHTMLAttributes } from 'react';
-import { MdeCommandMapProps, MdeGetIcon, MdePasteOptions } from '../../commands/command';
-import { MdeGenerateMarkdownPreview } from '../../typings/function-types';
-import { MdeTabProps } from '../toolbar/typings';
+import { MdeCommandMapProps, MdeGetIcon, MdePasteOptions } from '../../commands/command.ts';
+import { MdeGenerateMarkdownPreview } from '../../typings/function-types.ts';
+import { MdeTabProps } from '../toolbar/typings.ts';
 export interface MdeProps {
     text: string;
     setText: (text: string) => void;

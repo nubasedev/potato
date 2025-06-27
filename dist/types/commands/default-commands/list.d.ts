@@ -1,5 +1,5 @@
-import { MdeTextApi, MdeTextState } from '../../typings/command-options';
-import { MdeCommandProps } from '../command';
+import { MdeTextApi, MdeTextState } from '../../typings/command-options.ts';
+import { MdeCommandProps } from '../command.ts';
 export type AlterLineFunction = (line: string, index: number) => string;
 /**
  * Inserts insertionString before each line

@@ -1,6 +1,6 @@
-import { ChangeEvent, ComponentClass, ReactNode, ButtonHTMLAttributes } from 'react';
-import { MdeTextApi, MdeTextState } from '../typings/command-options';
-import { MdeHandleKeyCommand } from '../typings/function-types';
+import { ChangeEvent, ComponentClass, ReactNode, ButtonHTMLAttributes, ClipboardEvent } from 'react';
+import { MdeTextApi, MdeTextState } from '../typings/command-options.ts';
+import { MdeHandleKeyCommand } from '../typings/function-types.ts';
 export type MdeGetIcon = (iconName: string) => ReactNode;
 export interface MdeExecuteOptions {
     setText: (text: string) => void;
@@ -25,7 +25,7 @@ export interface MdeCommandContext {
 }
 export interface MdePasteCommandContext extends MdeCommandContext {
     type: 'paste';
-    event: ClipboardEvent | DragEvent | ChangeEvent;
+    event: ClipboardEvent<HTMLTextAreaElement> | DragEvent | ChangeEvent;
     pasteOptions: MdePasteOptions;
 }
 export type MdeToolbarCommands = string[][];
