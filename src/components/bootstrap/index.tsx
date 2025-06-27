@@ -1,4 +1,4 @@
-import { FC, useRef } from 'react'
+import { FC, useRef, type ClipboardEvent } from 'react'
 import { MdeCommandOrchestrator } from '../../commands/command-orchestrator.ts'
 import {
   getDefaultCommandMap,
@@ -39,7 +39,7 @@ export const Mde: FC<MdeProps> = ({
     refTextarea: refTextarea,
     pasteOptions: paste,
   })
-  const handlePaste = async (e: globalThis.ClipboardEvent) => {
+  const handlePaste = async (e: ClipboardEvent<HTMLTextAreaElement>) => {
     if (!paste?.saveImage) {
       return
     }
