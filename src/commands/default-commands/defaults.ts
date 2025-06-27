@@ -1,17 +1,17 @@
 import { MdeCommandMapProps, MdeToolbarCommands } from '../command.ts'
-import { boldCommand } from './bold.tsx'
-import { codeCommand } from './code.tsx'
-import { headerCommand } from './header.tsx'
-import { imageCommand } from './image.tsx'
-import { italicCommand } from './italic.tsx'
-import { linkCommand } from './link.tsx'
+import { boldCommand } from './bold.ts'
+import { codeCommand } from './code.ts'
+import { headerCommand } from './header.ts'
+import { imageCommand } from './image.ts'
+import { italicCommand } from './italic.ts'
+import { linkCommand } from './link.ts'
 import {
   checkedListCommand,
   orderedListCommand,
   unorderedListCommand,
-} from './list.tsx'
-import { quoteCommand } from './quote.tsx'
-import { strikeThroughCommand } from './strike-through.tsx'
+} from './list.ts'
+import { quoteCommand } from './quote.ts'
+import { strikeThroughCommand } from './strike-through.ts'
 export const getDefaultToolbarCommands = (): MdeToolbarCommands => [
   ['header', 'bold', 'italic', 'strikethrough'],
   ['link', 'quote', 'code', 'image'],
