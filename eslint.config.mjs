@@ -1,12 +1,10 @@
 import eslint from '@eslint/js'
-import tsPlugin from '@typescript-eslint/eslint-plugin'
 import tsEslintParser from '@typescript-eslint/parser'
 // import eslintConfigPrettier from 'eslint-config-prettier'
 import eslintPluginReact from 'eslint-plugin-react'
 import eslintPluginReactHooks from 'eslint-plugin-react-hooks'
 import globals from 'globals'
 import tsEslint from 'typescript-eslint'
-
 const globalConfig = [
   {
     name: 'global',
@@ -31,7 +29,7 @@ const globalConfig = [
     plugins: {
       react: eslintPluginReact,
       'react-hooks': eslintPluginReactHooks,
-      '@typescript-eslint': tsPlugin,
+      // '@typescript-eslint': tsPlugin,
     },
     rules: {
       ...eslintPluginReactHooks.configs.recommended.rules,
