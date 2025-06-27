@@ -3,6 +3,7 @@ import {
   ComponentClass,
   ReactNode,
   type ButtonHTMLAttributes,
+  type ClipboardEvent,
 } from 'react'
 import { MdeTextApi, MdeTextState } from '../typings/command-options.ts'
 import { MdeHandleKeyCommand } from '../typings/function-types.ts'
@@ -30,7 +31,7 @@ export interface MdeCommandContext {
 }
 export interface MdePasteCommandContext extends MdeCommandContext {
   type: 'paste'
-  event: ClipboardEvent | DragEvent | ChangeEvent
+  event: ClipboardEvent<HTMLTextAreaElement> | DragEvent | ChangeEvent
   pasteOptions: MdePasteOptions
 }
 export type MdeToolbarCommands = string[][]

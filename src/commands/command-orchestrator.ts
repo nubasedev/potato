@@ -1,4 +1,9 @@
-import { ChangeEvent, KeyboardEvent, RefObject } from 'react'
+import {
+  ChangeEvent,
+  KeyboardEvent,
+  RefObject,
+  type ClipboardEvent,
+} from 'react'
 import { MdeTextApi, MdeTextState } from '../typings/command-options.ts'
 import { MdeSelection } from '../typings/selection.ts'
 import { insertText } from '../utils/insert-text-at-position.ts'
@@ -131,7 +136,9 @@ export class MdeCommandOrchestrator {
   /**
    * Executes the paste command
    */
-  public executePasteCommand = async (event: ClipboardEvent): Promise<void> => {
+  public executePasteCommand = async (
+    event: ClipboardEvent<HTMLTextAreaElement>,
+  ): Promise<void> => {
     if (this.pasteOptions) {
       return this.executeCommand(
         this.pasteOptions.command || getDefaultSaveImageCommandName(),
